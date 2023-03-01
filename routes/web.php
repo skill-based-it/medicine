@@ -13,6 +13,7 @@ use App\Http\Controllers\admin\LogoutController;
 use App\Http\Controllers\user\UserController;
 use App\Http\Controllers\user\AdvertisementController;
 use App\Http\Controllers\admin\ProductsController;
+use App\Http\Controllers\admin\blogcontroller;
 
 
 /*
@@ -42,7 +43,7 @@ Route::get('/productdetails', [UserController::class, 'productdetails']);
 // Admin
 
 Route::get('/dashboard', function () {
-    return view('admin.dashboard');
+	return view('admin.dashboard');
 })->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
@@ -51,7 +52,7 @@ Route::get('/adminlogout', [LogoutController::class,'logout']);
 
 
 // Pages
- 
+
 Route::get('managepage', [PageController::class, 'index']);
 Route::get('addpages', [PageController::class, 'create']);
 Route::post('insertpages', [PageController::class, 'insert']);
@@ -64,6 +65,16 @@ Route::post('updatepages/{id}', [PageController::class, 'update']);
 
 Route::get('addsettings', [WebsitesettingController::class, 'index']);
 Route::post('updatesettings/{id}', [WebsitesettingController::class, 'update']);
+
+Route::get('addcontact', [WebsitesettingController::class, 'addcontact']);
+Route::post('updatecontact/{id}', [WebsitesettingController::class, 'updatecontact']);
+
+
+Route::get('addservices', [WebsitesettingController::class, 'addservices']);
+Route::post('updateservices/{id}', [WebsitesettingController::class, 'updateservices']);
+
+
+
 
 
 // Profile
@@ -104,6 +115,20 @@ Route::post('insertproducts', [ProductsController::class, 'insert']);
 Route::get('deleteproducts/{id}', [ProductsController::class, 'delete']);
 Route::get('editproducts/{id}', [ProductsController::class, 'edit']);
 Route::post('updateproducts/{id}', [ProductsController::class, 'update']);
+
+
+// blogs
+
+
+Route::get('manageblogs', [blogcontroller::class, 'index']);
+Route::get('addblogs', [blogcontroller::class, 'create']);
+Route::post('insertblogs', [blogcontroller::class, 'insert']);
+Route::get('deleteblogs/{id}', [blogcontroller::class, 'delete']);
+Route::get('editblogs/{id}', [blogcontroller::class, 'edit']);
+Route::post('updateblogs/{id}', [blogcontroller::class, 'update']);
+
+
+
 
 // Ajax
 

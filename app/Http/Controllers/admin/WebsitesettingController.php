@@ -82,4 +82,114 @@ class WebsitesettingController extends Controller
 
 
 
+
+
+
+
+
+
+
+
+	public function addcontact(){
+
+		$data = DB::table("contacts")
+		->first();
+
+		return view("admin.settings.addcontact", compact('data'));
+	}
+
+
+	public function updatecontact(Request $r,$id){
+
+		$data = array();
+		$data['top_title']        = $r->top_title;
+		$data['support_info']     = $r->support_info;
+		$data['access_point']     = $r->access_point;
+
+		$logimage                 = $r->file('image');
+
+
+		if ($logimage) {
+
+			$image_one_name= hexdec(uniqid()).'.'.$logimage->getClientOriginalExtension();
+			Image::make($logimage)->save('backend/logo/'.$image_one_name,50);
+			$data['image']='backend/logo/'.$image_one_name;
+		}
+
+
+		DB::table('contacts')->where('id', $id)->update($data);
+
+
+		$notification=array(
+			'messege'=>'Contact Update Successfull',
+			'alert-type'=>'success'
+		);
+		return redirect()->back()->with($notification);
+
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	public function addservices(){
+
+		$data = DB::table("services")
+		->first();
+
+		return view("admin.settings.addservices", compact('data'));
+	}
+
+
+	public function updateservices(Request $r,$id){
+
+		$data = array();
+		$data['top_title']        = $r->top_title;
+		$data['sales_service']    = $r->sales_service;
+		$data['services1']        = $r->services1;
+		$data['services2']        = $r->services2;
+		$logimage                 = $r->file('image');
+
+
+		if ($logimage) {
+
+			$image_one_name= hexdec(uniqid()).'.'.$logimage->getClientOriginalExtension();
+			Image::make($logimage)->save('backend/logo/'.$image_one_name,50);
+			$data['services_image']='backend/logo/'.$image_one_name;
+		}
+
+
+		DB::table('services')->where('id', $id)->update($data);
+
+
+		$notification=array(
+			'messege'=>'Services Update Successfull',
+			'alert-type'=>'success'
+		);
+		return redirect()->back()->with($notification);
+
+	}
+
+
+
+
+
+
+
+
+
+
+
+
 }
