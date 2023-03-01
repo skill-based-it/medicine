@@ -14,6 +14,7 @@ use App\Http\Controllers\user\UserController;
 use App\Http\Controllers\user\AdvertisementController;
 use App\Http\Controllers\admin\ProductsController;
 use App\Http\Controllers\admin\blogcontroller;
+use App\Http\Controllers\admin\TechoptimumController;
 
 
 /*
@@ -127,6 +128,28 @@ Route::get('deleteblogs/{id}', [blogcontroller::class, 'delete']);
 Route::get('editblogs/{id}', [blogcontroller::class, 'edit']);
 Route::post('updateblogs/{id}', [blogcontroller::class, 'update']);
 
+
+// Techoptimum
+
+Route::get('addtechoptimum', [TechoptimumController::class, 'index']);
+Route::post('updatetechoptimum/{id}', [TechoptimumController::class, 'update']);
+
+
+
+Route::get('managetechoptimumcat', [TechoptimumController::class, 'index2']);
+Route::get('addtechoptimumcat', [TechoptimumController::class, 'create2']);
+Route::post('inserttechoptimumcat', [TechoptimumController::class, 'insert2']);
+Route::get('deletetechoptimumcat/{id}', [TechoptimumController::class, 'delete2']);
+Route::get('edittechoptimumcat/{id}', [TechoptimumController::class, 'edit2']);
+Route::post('updatetechoptimumcat/{id}', [TechoptimumController::class, 'update2']);
+
+
+Route::get('managetechoptimumbooks', [TechoptimumController::class, 'index3']);
+Route::get('addtechoptimumbooks', [TechoptimumController::class, 'create3']);
+Route::post('inserttechoptimumbooks', [TechoptimumController::class, 'insert3']);
+Route::get('deletetechoptimumbooks/{id}', [TechoptimumController::class, 'delete3']);
+Route::get('edittechoptimumbooks/{id}', [TechoptimumController::class, 'edit3']);
+Route::post('updatetechoptimumbooks/{id}', [TechoptimumController::class, 'update3']);
 
 
 

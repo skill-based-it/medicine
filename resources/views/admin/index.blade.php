@@ -257,6 +257,18 @@
                   </li>
 
 
+                  <li>
+                    <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                      <i class="icon-grid menu-icon"></i><span class="nav-text">Tech Optimum</span>
+                    </a>
+                    <ul aria-expanded="false">
+                      <li><a href="{{ url('/addtechoptimum')}}">Techoptimum</a></li>
+                      <li><a href="{{ url('/managetechoptimumcat')}}">Techoptimum Category</a></li>
+                      <li><a href="{{ url('/managetechoptimumbooks')}}">Techoptimum Books</a></li>
+                    </ul>
+                  </li>
+
+
 
                   <li>
                     <a class="has-arrow" href="javascript:void()" aria-expanded="false">
