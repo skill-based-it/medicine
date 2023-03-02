@@ -3,7 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-
+use DB;
+use View;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -23,6 +24,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        View::composer('*',function($view){
+            $view->with('pages',DB::table('pages')->where('status',1)->get());
+        });
     }
 }
