@@ -18,7 +18,7 @@ class UserController extends Controller
     	 return view("user.layouts.about");
     }
 
-    
+
     public function products(){
 
     	 return view("user.layouts.products");
@@ -52,6 +52,12 @@ class UserController extends Controller
     public function productdetails(){
 
         return view("user.layouts.productdetails");
+    }
+
+    public function pages($slug, $id)
+    {
+        $data = DB::table('pages')->where('id',$id)->first();
+        return view('user.layouts.page_details',compact('data'));
     }
 
 

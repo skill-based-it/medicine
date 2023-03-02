@@ -118,7 +118,7 @@
           <span class="input-group-text bg-white rounded-0" id="basic-addon1"><i class="bi bi-envelope"></i></span>
           <input type="text" class="form-control rounded-0" placeholder="Enter Your Email Address" aria-label="Username" aria-describedby="basic-addon1">
         </div>
-        
+
       </div>
 
       <div class="col-xl-2">
@@ -141,7 +141,7 @@
           <li><a href="">Careers</a></li>
           <li><a href="">Contact</a></li>
           <li><a href="">Blog</a></li>
-          
+
         </div>
       </div>
 
@@ -194,7 +194,7 @@
           <li><a href=""><i class="bi bi-instagram"></i></a></li>
           <li><a href=""><i class="bi bi-youtube"></i></a></li>
           <li><a href=""><i class="bi bi-linkedin"></i></a></li>
-          
+
         </div>
       </div>
 
@@ -205,10 +205,12 @@
 
     <div class="row developertext align-items-center">
       <div class="col-xl-8 mt-4">
-        <strong>All rights reserved |</strong>  
-        <li><a href="">Terms & Conditions</a></li>
-        <li><a href="">FAQ</a></li>
-        <li><a href="">Privacy Policy</a></li>
+        <strong>All rights reserved |</strong>
+        @if ($pages)
+        @foreach ($pages as $v)
+        <li><a href="{{url('pages')}}/{{$v->slug}}/{{$v->id}}">{{$v->name}}</a></li>
+        @endforeach
+        @endif
       </div>
 
       <div class="col-xl-4 mt-4">
@@ -252,7 +254,7 @@ setInterval(function() {
         .css('-ms-transform', 'rotate('+angle+'deg)');
     angle++;
 }, 100);
-  
+
 </script>
 
 </body>
