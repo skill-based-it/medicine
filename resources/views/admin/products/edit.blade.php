@@ -18,7 +18,7 @@
 							@csrf
 
 							<div class="col-md-12 row">
-								
+
 								<div class="form-group col-md-4">
 									<label>Product Code: <span class="text-danger">*</span></label>
 									<input type="text" name="product_code" class="form-control" required="" value="{{ $data->product_code }}">
@@ -76,12 +76,12 @@
 
 								<div class="form-group col-md-6">
 
-									@php 
-									$category = DB::table('categories')->where('status', 1)->get(); 
+									@php
+									$category = DB::table('categories')->where('status', 1)->get();
 									@endphp
 
 									<select class="form-control" name="cat_id" id="cat_id" onchange="getsubcategory();">
-										
+
 
 										@if($category)
 										@foreach($category as $cat)
@@ -99,8 +99,8 @@
 
 									<div class="form-group col-md-6">
 
-										@php 
-										$subcategory = DB::table('subcategories')->where('status', 1)->get(); 
+										@php
+										$subcategory = DB::table('subcategories')->where('status', 1)->get();
 										@endphp
 
 										<select class="form-control" name="subcat_id" id="subcat_id">
@@ -128,7 +128,7 @@
 
 										<div class="form-group col-md-6">
 											<label>Image: <span class="text-danger">*</span></label>
-											<input type="file" name="image" class="form-control" id="imgInp">
+											<input type="file" name="image[]" class="form-control" id="imgInp" multiple>
 											<img id="blah" src="{{ asset($data->image) }}"  style="max-height: 100px;">
 											<input type="hidden" name="old_image" value="{{ url($data->image) }}">
 

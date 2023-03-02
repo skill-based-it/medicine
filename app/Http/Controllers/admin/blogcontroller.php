@@ -112,7 +112,7 @@ class blogcontroller extends Controller
 
 
 		DB::table('blogs')->where('id',$id)->update($data);
-		
+
 
 		$notification=array(
 			'messege'=>'Blog Update Successfully Done',

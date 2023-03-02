@@ -5,7 +5,7 @@
 body{
 	padding: 0;
 	margin: 0;
-	font-family: 'Mulish', sans-serif;  
+	font-family: 'Mulish', sans-serif;
 	overflow-x: hidden;
 	background: #fff;
 
@@ -15,6 +15,10 @@ html{
 	animation: fadeIn 2s;
 	overflow-x: hidden;
 
+}
+ul.uk-nav-sub li.active {
+    border-left: 2px solid lightblue;
+    padding-left: 7px;
 }
 
 
@@ -102,7 +106,7 @@ html{
 
 .footermenu li{
 	display: block;
-	
+
 }
 
 
@@ -410,7 +414,7 @@ html{
 }
 
 .blogdescription a{
-	font-weight: normal;	
+	font-weight: normal;
 	color: #000!important;
 	font-size: 18px;
 	text-decoration: none!important;
@@ -437,7 +441,7 @@ html{
 .clientsection{
 	padding: 100px;
 	background-size: cover;
-} 
+}
 
 .clientsection .clientdetails{
 	font-size: 30px;
@@ -1207,7 +1211,7 @@ div#lifecycle-reel {
 	  transform: rotate(359deg);
 	}
   }
- 
+
 
 
 @media(max-width: 768px){

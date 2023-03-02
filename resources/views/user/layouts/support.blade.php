@@ -14,12 +14,12 @@
 
 				<div class="mt-4">
 					Talk to us<br>
-					<a href="">Tel:+41 41 780 60 10</a><br><br>
+					<a href="tel:{{$settings->phone}}">Tel: {{ $settings->phone }}</a><br><br>
 
 					Write to us<br>
-					<a href="">Email : service@agappeswiss.com</a><br>
+					<a href="">Email : {{$settings->email}}</a><br>
 				</div>
-				
+
 			</div>
 
 			<div class="col-md-6">
@@ -31,7 +31,10 @@
 
 
 
-
+@php
+$support = DB::table('services')->first();
+$contacts = DB::table('contacts')->first();
+@endphp
 
 <section class="supportsection2 p-5 mt-5">
 	<div class="container">
@@ -47,7 +50,7 @@
 				</div>
 				<div class="mt-3">
 					<p>
-						'Mispa', which in Hebrew means “New Beginning” is synonymous with our products and it is this identity that has helped us to be visible among the competition. Our products are made to the highest quality to ensure a seamless customer experience. Well trained engineers and product specialists are deputed to handle hardware and reagents application support to offer the quickest solution for our customers
+						{!! $support->sales_service !!}
 					</p>
 				</div>
 
@@ -66,13 +69,13 @@
 
 			<div class="col-md-6">
 				<p>
-					'Mispa', which in Hebrew means “New Beginning” is synonymous with our products and it is this identity that has helped us to be visible among the competition. Our products are made to the highest quality to ensure a seamless customer experience. Well trained engineers and product specialists are deputed to handle hardware and reagents application support to offer the quickest solution for our customers
+					{!! $support->services1 !!}
 				</p>
 			</div>
 
 			<div class="col-md-6">
 				<p>
-					'Mispa', which in Hebrew means “New Beginning” is synonymous with our products and it is this identity that has helped us to be visible among the competition. Our products are made to the highest quality to ensure a seamless customer experience. Well trained engineers and product specialists are deputed to handle hardware and reagents application support to offer the quickest solution for our customers
+					{!! $support->services2 !!}
 				</p>
 			</div>
 
@@ -95,18 +98,7 @@
 			</div>
 
 			<div class="col-md-6 mt-4 bg-white p-4">
-				<label>Switzerland (Global Office)</label>
-				<div class="mt-4 span">
-					AGAPPE DIAGNOSTICS SWITZERLAND GmbH<br>
-					Knonauerstrasse 54 - 6330 Cham
-					Switzerland
-					<hr>
-					Tel: +41 41 780 60 10<br>
-
-					Fax: +41 41 780 60 11<br>
-
-					Email: info@agappeswiss.com
-				</div>
+				{!! $contacts->access_point !!}
 			</div>
 		</div>
 	</div>
@@ -117,21 +109,12 @@
 
 <section class="customersection2 pt-5">
 	<div class="container">
-		
+
 		<div class="row align-items-center	">
 			<div class="col-md-6">
 				<strong>Customer Technical Support</strong>
-				<div class="mt-4">
-					Talk to us<br>
-					<a href="">Tel:+41 41 780 60 10</a>
-				</div>
-				<div class="mt-4">
-					Write to us<br>
-					<a href="">Official : info@agappeswiss.com</a><br>
-					<a href="">Marketing : marketing@agappeswiss.com</a><br>
-					<a href="">Service : service@agappeswiss.com</a>
-				</div>
-				
+				{!! $contacts->support_info !!}
+
 			</div>
 
 			<div class="col-md-6 row">

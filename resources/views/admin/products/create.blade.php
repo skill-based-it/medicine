@@ -18,7 +18,7 @@
 							@csrf
 
 							<div class="col-md-12 row">
-								
+
 								<div class="form-group col-md-4">
 									<label>Product Code: <span class="text-danger">*</span></label>
 									<input type="text" name="product_code" class="form-control" required="">
@@ -76,12 +76,12 @@
 
 								<div class="form-group col-md-6">
 
-									@php 
-									$category = DB::table('categories')->where('status', 1)->get(); 
+									@php
+									$category = DB::table('categories')->where('status', 1)->get();
 									@endphp
 
 									<select class="form-control" name="cat_id" id="cat_id" onchange="getsubcategory();">
-										
+
 										<option value="">Select Category</option>
 										@if($category)
 										@foreach($category as $cat)
@@ -112,13 +112,13 @@
 
 								<div class="form-group col-md-6">
 									<label>Image: <span class="text-danger">*</span></label>
-									<input type="file" name="image" class="form-control" id="imgInp" required="">
+									<input type="file" name="image[]" class="form-control" id="imgInp" required="" multiple>
 									<img id="blah" src="https://via.placeholder.com/300.png"  style="max-height: 100px;">
 
 								</div>
 
-								
-								
+
+
 
 								<div class="form-group col-md-12"><strong class="bg-light p-2 d-block text-center">SEO TOOLS</strong></div>
 
@@ -161,7 +161,7 @@
 
 
 <script type="text/javascript">
-	
+
 	imgInp.onchange = evt => {
 		const [file] = imgInp.files
 		if (file) {

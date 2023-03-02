@@ -4,9 +4,9 @@
 
 <div class="container pt-4 pb-5">
     <ul class="uk-breadcrumb">
-        <li><a href="">Home</a></li>
-        <li><a href="">Clinical Chemistry</a></li>
-        <li><span>TBA-2000FR</span></li>
+        <li><a href="{{url('/')}}">Home</a></li>
+        <li><a href="">{{$catName->name}}</a></li>
+        <li><span>{{$data->product_code}}</span></li>
     </ul>
 
     <div class="row align-items-center mt-5 pt-5">
@@ -23,12 +23,19 @@
 
                         <ul class="uk-slider-items uk-child-width-1-1@s uk-grid">
 
+                            @php
+                            $prod_images = DB::table('product_images')->where('product_id',$data->product_code)->get();
+                            @endphp
 
+                            @if($prod_images)
+                            @foreach ($prod_images as $v)
                             <li>
-                                <center><img src="{{ asset("user") }}/image/prod2.jpg"></center>
+                                <center><img src="{{ asset("$v->images") }}"></center>
                             </li>
+                            @endforeach
+                            @endif
 
-                            <li>
+                            {{-- <li>
                                 <center><img src="{{ asset("user") }}/image/prod3.jpg"></center>
                             </li>
 
@@ -39,7 +46,7 @@
 
                             <li>
                                 <center><img src="{{ asset("user") }}/image/prod3.jpg"></center>
-                            </li>
+                            </li> --}}
 
 
 
@@ -62,12 +69,12 @@
         </div>
 
         <div class="col-md-7 productdetails2">
-            <label>TBA-2000FR</label><br><br>
-            <strong>Fully Automated Clinical Chemistry Analyzer</strong><br>
-            <em>This product is not available in your country</em><br><br>
+            <label>{{$data->product_code}}</label><br><br>
+            <strong>{{$data->product_name}}</strong><br>
+            {{-- <em>This product is not available in your country</em><br><br> --}}
 
             <b> Overview</b><br>
-            <p>High precision, simple operation, ecological protection. Experimental analysis of data accuracy, high reliability, stability and security design, TBA - 2000FR in pursuit of new concepts of form and function, and provides a convenient and simple operation.</p>
+            <p>{!! $data->overview !!}</p>
         </div>
     </div>
 </div>
@@ -90,7 +97,7 @@
         </li>
 
         <li class="nav-item" role="presentation">
-            <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">FAQ</button>
+            <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-faq" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">FAQ</button>
         </li>
 
         <li class="nav-item" role="presentation">
@@ -101,7 +108,7 @@
         <div class="tab-pane fade show active" id="tab1" role="tabpanel" aria-labelledby="pills-home-tab">
 
             <div class="mt-4">
-                <strong>Biochemistry Analyzer</strong>
+                <strong>{!! $data->features !!}</strong>
             </div>
 
 
@@ -111,16 +118,20 @@
         </div>
         <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
 
-            sdfs
+            {!! $data->technology !!}
 
         </div>
         <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
 
-            sdfsdgfsd
+            {!! $data->assay !!}
+        </div>
+        <div class="tab-pane fade" id="pills-faq" role="tabpanel" aria-labelledby="pills-contact-tab">
+
+            {!! $data->faq !!}
         </div>
     </div>
 
-    
+
 </div>
 
 
@@ -151,117 +162,44 @@
                 </div>
             </div>
 
+            @php
+
+            $real_prod = DB::table('products')->where('cat_id',$data->cat_id)->get();
+
+            @endphp
+
             <div class="uk-position-relative uk-visible-toggle" tabindex="-1" uk-slider>
 
                 <ul class="uk-slider-items uk-child-width-1-2 uk-child-width-1-4@m uk-grid">
 
+                    @if($real_prod)
+                    @foreach ($real_prod as $v)
+                    @if($v->id != $data->id)
                     <li class="uk-transition-toggle" tabindex="0">
                         <div class="uk-panel bg-white p-4 pb-5" style="border-bottom:2px solid #7E8CD6;">
-                            <center><img src="{{ asset("user") }}/image/prod1.jpg"></center><br>
+                            <center><img src="{{ asset("$v->image") }}"></center><br>
                             <div class="head">
                                 <center>
-                                    <strong>Mispa i2</strong><br>
-                                    <div class="mt-3"><label>Specific Protein Analyzer Specific Protein Analyzer</label></div>
+                                    <strong>{{$v->product_name}}</strong><br>
+                                    <div class="mt-3"><label></label></div>
                                 </center>
                             </div>
                             <div class="uk-position-center uk-panel" style="width: 100%; height: 100%;">
                                 <div class="uk-transition-slide-bottom-small p-4 productdetails" style="background: #7E8CD6; height: 100%;">
-                                    <strong>Mispa i2</strong><br><span>Specific Protein Analyzer</span><br>
-                                    <p>Mispa-i2 is a semi-automated specific protein analyzer that offers high precision and quick...</p>
+                                    <strong>{{$v->product_name}}</strong><br><span>Specific Protein Analyzer</span><br>
+                                    @php
+                                    $shortDetails = substr($v->short_details,0,50);
+                                    @endphp
+                                    <p>{{$shortDetails}}</p>
                                     <div class="mt-5"><center><a href="">VIEW</a></center></div>
                                 </div>
                             </div>
 
                         </div>
                     </li>
-
-
-                    <li class="uk-transition-toggle" tabindex="0">
-                        <div class="uk-panel bg-white p-4 pb-5" style="border-bottom:2px solid #7E8CD6;">
-                            <center><img src="{{ asset("user") }}/image/prod2.jpg"></center><br>
-                            <div class="head">
-                                <center>
-                                    <strong>Mispa Count Plus</strong><br>
-                                    <div class="mt-3"><label>Specific Protein Analyzer Specific Protein Analyzer</label></div>
-                                </center>
-                            </div>
-                            <div class="uk-position-center uk-panel" style="width: 100%; height: 100%;">
-                                <div class="uk-transition-slide-bottom-small p-4 productdetails" style="background: #7E8CD6; height: 100%;">
-                                    <strong>Mispa i2</strong><br><span>Specific Protein Analyzer</span><br>
-                                    <p>Mispa-i2 is a semi-automated specific protein analyzer that offers high precision and quick...</p>
-                                    <div class="mt-5"><center><a href="">VIEW</a></center></div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </li>
-
-
-                    <li class="uk-transition-toggle" tabindex="0">
-                        <div class="uk-panel bg-white p-4 pb-5" style="border-bottom:2px solid #7E8CD6;">
-                            <center><img src="{{ asset("user") }}/image/prod3.jpg"></center><br>
-                            <div class="head">
-                                <center>
-                                    <strong>Mispa Count</strong><br>
-                                    <div class="mt-3"><label>Specific Protein Analyzer Specific Protein Analyzer</label></div>
-                                </center>
-                            </div>
-                            <div class="uk-position-center uk-panel" style="width: 100%; height: 100%;">
-                                <div class="uk-transition-slide-bottom-small p-4 productdetails" style="background: #7E8CD6; height: 100%;">
-                                    <strong>Mispa i2</strong><br><span>Specific Protein Analyzer</span><br>
-                                    <p>Mispa-i2 is a semi-automated specific protein analyzer that offers high precision and quick...</p>
-                                    <div class="mt-5"><center><a href="">VIEW</a></center></div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </li>
-
-                    <li class="uk-transition-toggle" tabindex="0">
-                        <div class="uk-panel bg-white p-4 pb-5" style="border-bottom:2px solid #7E8CD6;">
-                            <center><img src="{{ asset("user") }}/image/p2.jpg"></center><br>
-                            <div class="head">
-                                <center>
-                                    <strong>Mispa Plus</strong><br>
-                                    <div class="mt-3"><label>Specific Protein Analyzer Specific Protein Analyzer</label></div>
-                                </center>
-                            </div>
-                            <div class="uk-position-center uk-panel" style="width: 100%; height: 100%;">
-                                <div class="uk-transition-slide-bottom-small p-4 productdetails" style="background: #7E8CD6; height: 100%;">
-                                    <strong>Mispa i2</strong><br><span>Specific Protein Analyzer</span><br>
-                                    <p>Mispa-i2 is a semi-automated specific protein analyzer that offers high precision and quick...</p>
-                                    <div class="mt-5"><center><a href="">VIEW</a></center></div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </li>
-
-
-                    <li class="uk-transition-toggle" tabindex="0">
-                        <div class="uk-panel bg-white p-4 pb-5" style="border-bottom:2px solid #7E8CD6;">
-                            <center><img src="{{ asset("user") }}/image/p2.jpg"></center><br>
-                            <div class="head">
-                                <center>
-                                    <strong>Mispa CX4</strong><br>
-                                    <div class="mt-3"><label>Specific Protein Analyzer Specific Protein Analyzer</label></div>
-                                </center>
-                            </div>
-                            <div class="uk-position-center uk-panel" style="width: 100%; height: 100%;">
-                                <div class="uk-transition-slide-bottom-small p-4 productdetails" style="background: #7E8CD6; height: 100%;">
-                                    <strong>Mispa i2</strong><br><span>Specific Protein Analyzer</span><br>
-                                    <p>Mispa-i2 is a semi-automated specific protein analyzer that offers high precision and quick...</p>
-                                    <div class="mt-5"><center><a href="">VIEW</a></center></div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </li>
-
-
-
-
-
+                    @endif
+                    @endforeach
+                    @endif
                 </ul>
 
                 <a class="uk-position-center-left uk-position-small" href="#" uk-slidenav-previous uk-slider-item="previous"></a>

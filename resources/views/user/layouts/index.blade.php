@@ -31,7 +31,7 @@
             <li><a href="{{ url("products") }}">PRODUCTS</a></li>
             <li><a href="{{ url("support") }}">SUPPORT</a></li>
             <li><a href="{{ url("careers") }}">CAREERS</a></li>
-            <li><a href="{{ url("techoptimum") }}">TECH OPTIMUM</a></li>
+            {{-- <li><a href="{{ url("techoptimum") }}">TECH OPTIMUM</a></li> --}}
             <!--<li><a href="#">VIRTUAL DEMO</a></li>-->
             <li><a href="{{ url("contact") }}">CONTACT US</a></li>
             <!--<li><a href="" class="iconmenu"><i class="bi bi-globe2"></i>&nbsp;&nbsp;EN</a></li>-->

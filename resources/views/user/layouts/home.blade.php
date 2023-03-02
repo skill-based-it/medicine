@@ -19,7 +19,7 @@
 						<div class="">
 							<span><i class="bi bi-play-circle"></i>&nbsp;&nbsp;Watch Our Video</span>
 							<div class="mt-4 mb-4"><strong>Your Best Partner In Diagonistic</strong></div><br>
-							<a href="" class="button">Explore Products</a>
+							<a href="{{url('/products')}}" class="button">Explore Products</a>
 						</div>
 					</div>
 
@@ -37,7 +37,7 @@
 						<div class="">
 							<span><i class="bi bi-play-circle"></i>&nbsp;&nbsp;Watch Our Video</span>
 							<div class="mt-4 mb-4"><strong>Performance Ahead Of Expectation</strong></div><br>
-							<a href="" class="button">Explore Products</a>
+							<a href="{{url('/products')}}" class="button">Explore Products</a>
 						</div>
 					</div>
 
@@ -67,11 +67,11 @@
 
 
 
-			
+
 		</ul>
 
 		<ul class="uk-slideshow-nav uk-dotnav uk-margin"></ul>
-		
+
 
 
 	</div>
@@ -90,7 +90,7 @@
 					<div class="col-10">
 						<strong class="text-dark">Research and Development</strong>
 						<div class="mt-3" style="width: 40px; height: 2px; background: darkblue;"></div>
-						
+
 					</div>
 				</div>
 			</div>
@@ -104,7 +104,7 @@
 					<div class="col-10">
 						<strong class="text-dark">Manufacturing Capability</strong>
 						<div class="mt-3" style="width: 40px; height: 2px; background: darkblue;"></div>
-						
+
 					</div>
 				</div>
 			</div>
@@ -118,7 +118,7 @@
 					<div class="col-10">
 						<strong class="text-dark">Global Reach</strong>
 						<div class="mt-3" style="width: 40px; height: 2px; background: darkblue;"></div>
-						
+
 					</div>
 				</div>
 			</div>
@@ -153,7 +153,7 @@
 
 			<div class="col-lg-4">
 				<div class="float-end">
-					<span>View All Products &nbsp;&nbsp;<i class="bi bi-plus-lg"></i></a>
+					<a href="{{url('/products')}}"><span>View All Products &nbsp;&nbsp;<i class="bi bi-plus-lg"></i></a>
 					</div>
 				</div>
 			</div>
@@ -162,112 +162,35 @@
 
 				<ul class="uk-slider-items uk-child-width-1-2 uk-child-width-1-4@m uk-grid">
 
+                    @if($product)
+                    @foreach ($product as $v)
 					<li class="uk-transition-toggle" tabindex="0">
 						<div class="uk-panel bg-white p-4 pb-5" style="border-bottom:2px solid #7E8CD6;">
-							<center><img src="{{ asset("user") }}/image/prod1.jpg"></center><br>
+							<center><img src="{{ asset("$v->image") }}"></center><br>
 							<div class="head">
+                                @php
+                                $catName = DB::table('categories')->where('id',$v->cat_id)->first();
+                                @endphp
 								<center>
-									<strong>Mispa i2</strong><br>
-									<div class="mt-3"><label>Specific Protein Analyzer Specific Protein Analyzer</label></div>
+									<strong>{{$v->product_name}}</strong><br>
+									<div class="mt-3"><label>{{$catName->name}}</label></div>
 								</center>
 							</div>
 							<div class="uk-position-center uk-panel" style="width: 100%; height: 100%;">
 								<div class="uk-transition-slide-bottom-small p-4 productdetails" style="background: #7E8CD6; height: 100%;">
-									<strong>Mispa i2</strong><br><span>Specific Protein Analyzer</span><br>
-									<p>Mispa-i2 is a semi-automated specific protein analyzer that offers high precision and quick...</p>
-									<div class="mt-5"><center><a href="{{ url("productdetails") }}">VIEW</a></center></div>
+									<strong>{{$v->product_name}}</strong><br><span>{{$catName->name}}</span><br>
+                                    @php
+                                    $shortDetails = substr($v->short_details,0,50);
+                                    @endphp
+									<p>{!! $shortDetails !!}</p>
+									<div class="mt-5"><center><a href="{{ url("productdetails") }}/{{$v->product_code}}/{{$v->id}}">VIEW</a></center></div>
 								</div>
 							</div>
 
 						</div>
 					</li>
-
-
-					<li class="uk-transition-toggle" tabindex="0">
-						<div class="uk-panel bg-white p-4 pb-5" style="border-bottom:2px solid #7E8CD6;">
-							<center><img src="{{ asset("user") }}/image/prod2.jpg"></center><br>
-							<div class="head">
-								<center>
-									<strong>Mispa Count Plus</strong><br>
-									<div class="mt-3"><label>Specific Protein Analyzer Specific Protein Analyzer</label></div>
-								</center>
-							</div>
-							<div class="uk-position-center uk-panel" style="width: 100%; height: 100%;">
-								<div class="uk-transition-slide-bottom-small p-4 productdetails" style="background: #7E8CD6; height: 100%;">
-									<strong>Mispa i2</strong><br><span>Specific Protein Analyzer</span><br>
-									<p>Mispa-i2 is a semi-automated specific protein analyzer that offers high precision and quick...</p>
-									<div class="mt-5"><center><a href="{{ url("productdetails") }}">VIEW</a></center></div>
-								</div>
-							</div>
-
-						</div>
-					</li>
-
-
-					<li class="uk-transition-toggle" tabindex="0">
-						<div class="uk-panel bg-white p-4 pb-5" style="border-bottom:2px solid #7E8CD6;">
-							<center><img src="{{ asset("user") }}/image/prod3.jpg"></center><br>
-							<div class="head">
-								<center>
-									<strong>Mispa Count</strong><br>
-									<div class="mt-3"><label>Specific Protein Analyzer Specific Protein Analyzer</label></div>
-								</center>
-							</div>
-							<div class="uk-position-center uk-panel" style="width: 100%; height: 100%;">
-								<div class="uk-transition-slide-bottom-small p-4 productdetails" style="background: #7E8CD6; height: 100%;">
-									<strong>Mispa i2</strong><br><span>Specific Protein Analyzer</span><br>
-									<p>Mispa-i2 is a semi-automated specific protein analyzer that offers high precision and quick...</p>
-									<div class="mt-5"><center><a href="{{ url("productdetails") }}">VIEW</a></center></div>
-								</div>
-							</div>
-
-						</div>
-					</li>
-
-					<li class="uk-transition-toggle" tabindex="0">
-						<div class="uk-panel bg-white p-4 pb-5" style="border-bottom:2px solid #7E8CD6;">
-							<center><img src="{{ asset("user") }}/image/p2.jpg"></center><br>
-							<div class="head">
-								<center>
-									<strong>Mispa Plus</strong><br>
-									<div class="mt-3"><label>Specific Protein Analyzer Specific Protein Analyzer</label></div>
-								</center>
-							</div>
-							<div class="uk-position-center uk-panel" style="width: 100%; height: 100%;">
-								<div class="uk-transition-slide-bottom-small p-4 productdetails" style="background: #7E8CD6; height: 100%;">
-									<strong>Mispa i2</strong><br><span>Specific Protein Analyzer</span><br>
-									<p>Mispa-i2 is a semi-automated specific protein analyzer that offers high precision and quick...</p>
-									<div class="mt-5"><center><a href="{{ url("productdetails") }}">VIEW</a></center></div>
-								</div>
-							</div>
-
-						</div>
-					</li>
-
-
-					<li class="uk-transition-toggle" tabindex="0">
-						<div class="uk-panel bg-white p-4 pb-5" style="border-bottom:2px solid #7E8CD6;">
-							<center><img src="{{ asset("user") }}/image/p2.jpg"></center><br>
-							<div class="head">
-								<center>
-									<strong>Mispa CX4</strong><br>
-									<div class="mt-3"><label>Specific Protein Analyzer Specific Protein Analyzer</label></div>
-								</center>
-							</div>
-							<div class="uk-position-center uk-panel" style="width: 100%; height: 100%;">
-								<div class="uk-transition-slide-bottom-small p-4 productdetails" style="background: #7E8CD6; height: 100%;">
-									<strong>Mispa i2</strong><br><span>Specific Protein Analyzer</span><br>
-									<p>Mispa-i2 is a semi-automated specific protein analyzer that offers high precision and quick...</p>
-									<div class="mt-5"><center><a href="{{ url("productdetails") }}">VIEW</a></center></div>
-								</div>
-							</div>
-
-						</div>
-					</li>
-
-
-
-
+                    @endforeach
+                    @endif
 
 				</ul>
 
@@ -283,7 +206,7 @@
 
 
 	<section class="clientsection" style="background-image: url({{ asset("user") }}/image/bgg.jpg);">
-	
+
 		<div class="container">
 			<div class="clientdetails">
 				Building Stronger<br> Partnerships in In-Vitro<br> Diagnostics For Over 25 Years
@@ -396,9 +319,9 @@
 				<center><video src="https://www.agappe.com/media/homepage/video/Agappe-vr-video-new.mp4" loop muted playsinline uk-video="autoplay: inview"></video></center>
 			</div>
 		</div>
-		
+
 	</div>
-	
+
 </section>
 
 
@@ -422,9 +345,9 @@
 				<center><img src="{{ asset("user") }}/image/heading_image2.jpg" class="img-fluid rounded"></center>
 			</div>
 		</div>
-		
+
 	</div>
-	
+
 </section>
 
 
@@ -443,7 +366,7 @@
 
 			<div class="col-lg-4">
 				<div class="float-end">
-					<a href="">View All Articles &nbsp;&nbsp;<i class="bi bi-plus-lg"></i></a>
+					{{-- <a href="">View All Articles &nbsp;&nbsp;<i class="bi bi-plus-lg"></i></a> --}}
 				</div>
 			</div>
 		</div>
@@ -455,76 +378,28 @@
 
 				<ul class="uk-slider-items uk-child-width-1-3@s uk-grid">
 
-
+                    @if($blogs)
+                    @foreach ($blogs as $v)
 					<li class="blogdescription">
 						<div class="uk-card uk-card-default">
 							<div class="uk-card-media-top">
-								<a href=""><img src="{{ asset("user") }}/image/b1.webp" class="img-fluid" alt=""></a>
+								<a href="{{url('blogdetails')}}/{{$v->id}}"><img src="{{ asset("$v->image")}} "class="img-fluid" alt=""></a>
 							</div>
 							<div class="uk-card-body p-4">
-								<span>HR Sandesh</span>
-								<div class="mt-2"><a href="">There Is Always Two Sides to A Story</a></div>
+								<span>{{$v->writer_name}}</span>
+								<div class="mt-2"><a href="{{url('blogdetails')}}/{{$v->id}}">{{$v->title}}</a></div>
 								<div class="mt-5">
-									<label><?php echo date('M d-y') ?></label>
+                                    @php
+                                    $explode = explode('-',$v->date);
+                                    @endphp
+									<label>{{$explode[2]}} / {{$explode[1]}} / {{$explode[0]}}</label>
 								</div>
-								
+
 							</div>
 						</div>
 					</li>
-
-
-					<li class="blogdescription">
-						<div class="uk-card uk-card-default">
-							<div class="uk-card-media-top">
-								<a href=""><img src="{{ asset("user") }}/image/b2.webp" class="img-fluid" alt=""></a>
-							</div>
-							<div class="uk-card-body p-4">
-								<span>HR Sandesh</span>
-								<div class="mt-2"><a href="">There Is Always Two Sides to A Story</a></div>
-								<div class="mt-5">
-									<label><?php echo date('M d-y') ?></label>
-								</div>
-								
-							</div>
-						</div>
-					</li>
-
-					<li class="blogdescription">
-						<div class="uk-card uk-card-default">
-							<div class="uk-card-media-top">
-								<a href=""><img src="{{ asset("user") }}/image/b3.webp" class="img-fluid" alt=""></a>
-							</div>
-							<div class="uk-card-body p-4">
-								<span>HR Sandesh</span>
-								<div class="mt-2"><a href="">There Is Always Two Sides to A Story</a></div>
-								<div class="mt-5">
-									<label><?php echo date('M d-y') ?></label>
-								</div>
-								
-							</div>
-						</div>
-					</li>
-
-					<li class="blogdescription">
-						<div class="uk-card uk-card-default">
-							<div class="uk-card-media-top">
-								<a href=""><img src="{{ asset("user") }}/image/b4.webp" class="img-fluid" alt=""></a>
-							</div>
-							<div class="uk-card-body p-4">
-								<span>HR Sandesh</span>
-								<div class="mt-2"><a href="">There Is Always Two Sides to A Story</a></div>
-								<div class="mt-5">
-									<label><?php echo date('M d-y') ?></label>
-								</div>
-								
-							</div>
-						</div>
-					</li>
-
-
-
-
-					
+                    @endforeach
+                    @endif
 				</ul>
 
 				<a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slider-item="previous"></a>
@@ -536,7 +411,7 @@
 
 		</div>
 
-		
+
 
 
 	</div>

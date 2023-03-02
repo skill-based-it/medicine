@@ -2,6 +2,12 @@
 @section('content')
 
 
+@php
+$support = DB::table('services')->first();
+$contacts = DB::table('contacts')->first();
+$settings = DB::table('settings')->first();
+@endphp
+
 <section class="contactsection">
     <div class="container">
         <div class="row align-items-center">
@@ -28,15 +34,13 @@
 
                 <div class="mt-4">
                     Talk to us<br>
-                    <a href="">Tel:+41 41 780 60 10</a>
+                    <a href="tel:{{$settings->phone}}">Tel:+{{$settings->phone}}</a>
                 </div>
                 <div class="mt-4">
                     Write to us<br>
-                    <a href="">Official : info@agappeswiss.com</a><br>
-                    <a href="">Marketing : marketing@agappeswiss.com</a><br>
-                    <a href="">Service : service@agappeswiss.com</a>
+                    <a href="">Official : {{$settings->email}}</a><br>
                 </div>
-                
+
             </div>
 
             <div class="col-md-6 row">
@@ -85,18 +89,7 @@
             </div>
 
             <div class="col-md-6 mt-4 bg-white p-4">
-                <label>Switzerland (Global Office)</label>
-                <div class="mt-4 span">
-                    AGAPPE DIAGNOSTICS SWITZERLAND GmbH<br>
-                    Knonauerstrasse 54 - 6330 Cham
-                    Switzerland
-                    <hr>
-                    Tel: +41 41 780 60 10<br>
-
-                    Fax: +41 41 780 60 11<br>
-
-                    Email: info@agappeswiss.com
-                </div>
+                {!! $contacts->access_point !!}
             </div>
         </div>
     </div>
