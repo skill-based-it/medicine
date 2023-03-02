@@ -52,15 +52,22 @@ class ProductsController extends Controller
 		$data['seo_description']      = $r->seo_description;
 		$data['faq']                 = $r->faq;
 		$data['date']                 = date('Y-m-d');
-
-
 		$image                        = $r->file('image');
 
 		if ($image) {
 
-			$image_one_name= hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
-			Image::make($image)->save('backend/productimage/'.$image_one_name,60);
-			$data['image']='backend/productimage/'.$image_one_name;
+            for($i=0; $i < count($image); $i++)
+            {
+                $image_one_name[$i]= hexdec(uniqid()).'.'.$r->image[$i]->getClientOriginalExtension();
+                Image::make($image[$i])->save('backend/productimage/'.$image_one_name[$i],60);
+
+                DB::table('product_images')->insert([
+                    'product_id'=>$r->product_code,
+                    'images'=>'backend/productimage/'.$image_one_name[$i],
+                ]);
+                $data['image']='backend/productimage/'.$image_one_name[0];
+            }
+
 		}
 
 
@@ -81,6 +88,10 @@ class ProductsController extends Controller
 
 
 	public function delete($id){
+
+        $product_id = DB::table('products')->where('id',$id)->first();
+
+        $deleteImages = DB::table('product_images')->where('product_id',$product_id->product_code)->delete();
 
 		DB::table("products")->where('id',$id)->delete();
 
@@ -126,16 +137,30 @@ class ProductsController extends Controller
 
 		if ($image) {
 
-			
+            $product_id = DB::table('products')->where('id',$id)->first();
 
-			$image_one_name= hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
-			Image::make($image)->save('backend/productimage/'.$image_one_name,60);
-			$data['image']='backend/productimage/'.$image_one_name;
+            $deleteImages = DB::table('product_images')->where('product_id',$product_id->product_code)->delete();
+
+            if ($image) {
+
+                for($i=0; $i < count($image); $i++)
+                {
+                    $image_one_name[$i]= hexdec(uniqid()).'.'.$r->image[$i]->getClientOriginalExtension();
+                    Image::make($image[$i])->save('backend/productimage/'.$image_one_name[$i],60);
+
+                    DB::table('product_images')->insert([
+                        'product_id'=>$r->product_code,
+                        'images'=>'backend/productimage/'.$image_one_name[$i],
+                    ]);
+                    $data['image']='backend/productimage/'.$image_one_name[0];
+                }
+
+            }
 		}
 
 
 		DB::table('products')->where('id',$id)->update($data);
-		
+
 
 		$notification=array(
 			'messege'=>'Products Update Successfully Done',
@@ -145,7 +170,7 @@ class ProductsController extends Controller
 
 	}
 
-	
+
 	public function getsubcat($id){
 
 		$data = DB::table("subcategories")->where('status',1)->where('cat_id',$id)->get();

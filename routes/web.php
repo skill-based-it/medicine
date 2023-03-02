@@ -38,8 +38,10 @@ Route::get('/support', [UserController::class, 'support']);
 Route::get('/careers', [UserController::class, 'careers']);
 Route::get('/techoptimum', [UserController::class, 'techoptimum']);
 Route::get('/contact', [UserController::class, 'contact']);
-Route::get('/productdetails', [UserController::class, 'productdetails']);
+Route::get('/productdetails/{product_code}/{id}', [UserController::class, 'productdetails']);
 Route::get('/pages/{slug}/{id}', [UserController::class, 'pages']);
+Route::get('/categorey_product/{cat_id}/{sub_catid}', [UserController::class, 'categorey_product']);
+Route::get('/blogdetails/{id}', [UserController::class, 'blogdetails']);
 
 
 // Admin
