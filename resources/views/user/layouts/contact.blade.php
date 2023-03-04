@@ -43,29 +43,32 @@ $settings = DB::table('settings')->first();
 
             </div>
 
-            <div class="col-md-6 row">
-                <div class="form-group col-md-12">
-                    <input type="text" name="" placeholder="Your Full Name" class="form-control">
-                </div>
-                <div class="form-group col-md-6 mt-4">
-                    <input type="text" name="" placeholder="Email" class="form-control">
-                </div>
-                <div class="form-group col-md-6 mt-4">
-                    <input type="text" name="" placeholder="Phone Number" class="form-control">
-                </div>
+            <div class="col-md-6">
+                <form action="{{url('messageSubmit')}}  " method="post" class="row">
+                    @csrf
+                    <div class="form-group col-md-12">
+                        <input type="text" name="name" placeholder="Your Full Name" class="form-control">
+                    </div>
+                    <div class="form-group col-md-6 mt-4">
+                        <input type="text" name="email" placeholder="Email" class="form-control">
+                    </div>
+                    <div class="form-group col-md-6 mt-4">
+                        <input type="text" name="phone" placeholder="Phone Number" class="form-control">
+                    </div>
 
-                <div class="form-group col-md-12 mt-4">
-                    <select class="form-control" name="">
-                        <option>Select Location</option>
-                    </select>
-                </div>
-                <div class="form-group col-md-12 mt-4">
-                    <textarea rows="4" class="form-control" placeholder="Tell us about you"></textarea>
-                </div>
+                    {{-- <div class="form-group col-md-12 mt-4">
+                        <select class="form-control" name="">
+                            <option>Select Location</option>
+                        </select>
+                    </div> --}}
+                    <div class="form-group col-md-12 mt-4">
+                        <textarea rows="4" class="form-control" name="message" placeholder="Tell us about you"></textarea>
+                    </div>
 
-                <div class="form-group mt-4">
-                    <button class="float-end">Submit</button>
-                </div>
+                    <div class="form-group mt-4">
+                        <button type="submit" class="float-end">Submit</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

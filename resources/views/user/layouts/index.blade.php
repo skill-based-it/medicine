@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Optimum</title>
+  <link rel="icon" href="{{asset($websettings->favicon)}}">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="{{ asset("user") }}/css/style.css">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,6 +12,8 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.15.23/dist/css/uikit.min.css" />
   <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
 
 </head>
@@ -23,7 +26,7 @@
       <div class="container">
        <div class="row align-items-center">
         <div class="col-xl-3 ">
-          <a href="{{ url('/') }}"><img src="{{ asset("user") }}/image/logo.png" class="img-responsive" ></a>
+          <a href="{{ url('/') }}"><img src="{{ asset("$websettings->logo") }}" class="img-responsive" ></a>
         </div>
         <div class="col-xl-9">
           <div class="float-end">
@@ -100,7 +103,7 @@
   <div class="container">
     <div class="row align-items-center">
       <div class="col-xl-3">
-        <img src="{{ asset("user") }}/image/footerlogo.svg" class="form-control">
+        <img src="{{ asset("$websettings->logo") }}" class="form-control">
       </div>
 
       <div class="col-xl-4">
@@ -149,23 +152,19 @@
         <strong>Products</strong><br><br>
         <div class="row">
           <div class="col-md-6">
-            <li><a href="">Clinical Chemistry</a></li>
-            <li><a href="">Hematology</a></li>
-            <li><a href="">Nephelometry</a></li>
-            <li><a href="">Immunology</a></li>
-            <li><a href="">Coagulation</a></li>
-            <li><a href="">Electrolyte</a></li>
-            <li><a href="">Pre- Analytical</a></li>
+            @if($cat_first)
+            @foreach ($cat_first as $v)
+            <li><a href="{{url('categoryprod')}}/{{$v->id}}">{{$v->name}}</a></li>
+            @endforeach
+            @endif
           </div>
 
           <div class="col-md-6">
-            <li><a href="">Urine Analysis</a></li>
-            <li><a href="">Point Of Care</a></li>
-            <li><a href="">Rapids</a></li>
-            <li><a href="">Serology</a></li>
-            <li><a href="">Molecular Diagnostics</a></li>
-            <li><a href="">Controls & Calibrators</a></li>
-            <li><a href="">Covid 19 Products</a></li>
+            @if($cat_second)
+            @foreach ($cat_second as $v)
+            <li><a href="{{url('categoryprod')}}/{{$v->id}}">{{$v->name}}</a></li>
+            @endforeach
+            @endif
           </div>
         </div>
       </div>
@@ -240,7 +239,7 @@
 
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
-
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 <script type="text/javascript">
 
 $('.single-item').slick();

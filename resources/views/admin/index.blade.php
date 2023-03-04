@@ -28,7 +28,7 @@
   <style type="text/css">
 
     body{
-      font-family: 'Poppins','Tiro Bangla',sans-serif;   
+      font-family: 'Poppins','Tiro Bangla',sans-serif;
     }
 
     .form-group .form-control{
@@ -151,7 +151,7 @@
         <!--**********************************
             Header start
             ***********************************-->
-            <div class="header">    
+            <div class="header">
               <div class="header-content clearfix">
 
                 <div class="nav-control">
@@ -205,7 +205,7 @@
         <!--**********************************
             Sidebar start
             ***********************************-->
-            <div class="nk-sidebar">           
+            <div class="nk-sidebar">
               <div class="nk-nav-scroll">
                 <ul class="metismenu" id="menu">
                   <li class="nav-label" style="color:gray;">Dashboard</li>
@@ -301,6 +301,21 @@
                     </a>
                   </li>
 
+                  <li>
+                    <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                      <i class="icon-grid menu-icon"></i><span class="nav-text">About US</span>
+                    </a>
+                    <ul aria-expanded="false">
+                      <li><a href="{{ url('/create_aboutus')}}">About Us Settings</a></li>
+                      <li><a href="{{ url('/valuesInfo')}}">Values Info</a></li>
+                      <li><a href="{{ url('/createValueBox')}}">Create Value Box</a></li>
+                      <li><a href="{{ url('/beliefSystem')}}">Belief System</a></li>
+                      <li><a href="{{ url('/founderMessage')}}">Founder Message</a></li>
+                      <li><a href="{{ url('/chairmanMessage')}}">Chairman Message</a></li>
+                      <li><a href="{{ url('mdMessage')}}">MD Message</a></li>
+                    </ul>
+                  </li>
+
 
 
 
@@ -315,6 +330,9 @@
                       <li><a href="{{ url('/profile/'.Auth()->user()->id) }}">My Profile</a></li>
                     </ul>
                   </li>
+
+
+
 
 
 
