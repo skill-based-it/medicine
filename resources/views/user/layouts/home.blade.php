@@ -17,7 +17,7 @@
 				<div class="row">
 					<div class="col-md-6">
 						<div class="">
-							<span><i class="bi bi-play-circle"></i>&nbsp;&nbsp;Watch Our Video</span>
+							{{-- <span><i class="bi bi-play-circle"></i>&nbsp;&nbsp;Watch Our Video</span> --}}
 							<div class="mt-4 mb-4"><strong>Your Best Partner In Diagonistic</strong></div><br>
 							<a href="{{url('/products')}}" class="button">Explore Products</a>
 						</div>
@@ -35,7 +35,7 @@
 				<div class="row">
 					<div class="col-md-6">
 						<div class="">
-							<span><i class="bi bi-play-circle"></i>&nbsp;&nbsp;Watch Our Video</span>
+							{{-- <span><i class="bi bi-play-circle"></i>&nbsp;&nbsp;Watch Our Video</span> --}}
 							<div class="mt-4 mb-4"><strong>Performance Ahead Of Expectation</strong></div><br>
 							<a href="{{url('/products')}}" class="button">Explore Products</a>
 						</div>
@@ -53,7 +53,7 @@
 				<div class="row">
 					<div class="col-md-6">
 						<div class="">
-							<span><i class="bi bi-play-circle"></i>&nbsp;&nbsp;Watch Our Video</span>
+							{{-- <span><i class="bi bi-play-circle"></i>&nbsp;&nbsp;Watch Our Video</span> --}}
 							<div class="mt-4 mb-4"><strong>Your Best Partner In Diagonistic</strong></div><br>
 							<a href="" class="button">Explore Products</a>
 						</div>

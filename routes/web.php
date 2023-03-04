@@ -15,6 +15,7 @@ use App\Http\Controllers\user\AdvertisementController;
 use App\Http\Controllers\admin\ProductsController;
 use App\Http\Controllers\admin\blogcontroller;
 use App\Http\Controllers\admin\TechoptimumController;
+use App\Http\Controllers\admin\AboutUsController;
 
 
 /*
@@ -42,6 +43,8 @@ Route::get('/productdetails/{product_code}/{id}', [UserController::class, 'produ
 Route::get('/pages/{slug}/{id}', [UserController::class, 'pages']);
 Route::get('/categorey_product/{cat_id}/{sub_catid}', [UserController::class, 'categorey_product']);
 Route::get('/blogdetails/{id}', [UserController::class, 'blogdetails']);
+Route::get('/categoryprod/{id}', [UserController::class, 'categoryprod']);
+Route::post('/messageSubmit', [UserController::class, 'messageSubmit']);
 
 
 // Admin
@@ -159,3 +162,25 @@ Route::post('updatetechoptimumbooks/{id}', [TechoptimumController::class, 'updat
 // Ajax
 
 Route::get('getsubcategory/{id}', [ProductsController::class, 'getsubcat']);
+
+
+//about Us
+
+Route::get('/create_aboutus',[AboutUsController::class,'create_aboutus']);
+Route::post('/aboutUsUpdateInfo',[AboutUsController::class,'aboutUsUpdateInfo']);
+Route::get('/valuesInfo',[AboutUsController::class,'valuesInfo']);
+Route::post('/updateValuesInfo',[AboutUsController::class,'updateValuesInfo']);
+Route::get('/createValueBox',[AboutUsController::class,'createValueBox']);
+Route::post('/insertValueBox',[AboutUsController::class,'insertValueBox']);
+Route::get('/manageValueBox',[AboutUsController::class,'manageValueBox']);
+Route::get('/editValueBox/{id}',[AboutUsController::class,'editValueBox']);
+Route::post('/updateValueBox/{id}',[AboutUsController::class,'updateValueBox']);
+Route::get('/deleteValueBox/{id}',[AboutUsController::class,'deleteValueBox']);
+Route::get('/beliefSystem',[AboutUsController::class,'beliefSystem']);
+Route::post('/updateBeliefSystem',[AboutUsController::class,'updateBeliefSystem']);
+Route::get('/founderMessage',[AboutUsController::class,'founderMessage']);
+Route::post('/updateFounderMessage',[AboutUsController::class,'updateFounderMessage']);
+Route::get('/chairmanMessage',[AboutUsController::class,'chairmanMessage']);
+Route::post('/updateChairmanMessage',[AboutUsController::class,'updateChairmanMessage']);
+Route::get('/mdMessage',[AboutUsController::class,'mdMessage']);
+Route::post('/updateMdMessage',[AboutUsController::class,'updateMdMessage']);

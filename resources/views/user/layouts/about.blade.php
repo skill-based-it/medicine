@@ -10,7 +10,7 @@
 			</div>
 
 			<div class="col-md-10">
-				<strong>Highly Specialised Procedures with a<br> Relationship-based Approach</strong>
+				<strong>{{ $data->about_us_title }}</strong>
 			</div>
 		</div>
 	</div>
@@ -21,25 +21,13 @@
 <section class="aboutsection">
 	<div class="container p-5">
 		<div class="row align-items-center">
+            @if($aboutUsImages)
+            @foreach ($aboutUsImages as $v)
 			<div class="col-md-3">
-				<img src="{{ url("user") }}/image/a1.webp" class="img-fluid">
+				<img src="{{ asset('/backend/aboutUsImage') }}/{{$v->images}}" class="img-fluid">
 			</div>
-
-			<div class="col-md-3 mt-5">
-				<img src="{{ url("user") }}/image/a2.webp" class="img-fluid">
-			</div>
-
-			<div class="col-md-2">
-				<img src="{{ url("user") }}/image/a3.webp" class="img-fluid">
-			</div>
-
-			<div class="col-md-2">
-				<img src="{{ url("user") }}/image/a4.webp" class="img-fluid">
-			</div>
-
-			<div class="col-md-2">
-				<img src="{{ url("user") }}/image/a5.webp" class="img-fluid">
-			</div>
+            @endforeach
+            @endif
 		</div>
 	</div>
 </section>
@@ -52,32 +40,32 @@
 		<div class="row">
 			<div class="col-md-3">
 				<span>SINCE</span>
-				<div><strong>SINCE 1995</strong></div>
+				<div><strong>SINCE {{$data->company_est}}</strong></div>
 			</div>
 
 			<div class="col-md-9">
 				<p>
-					Agappe was established in 1995 with a vision “To be the Best Partner in the Diagnostic Field for the Welfare of Mankind”. This has guided us since our inception and helped us to consolidate our position as the fastest-growing In-Vitro Diagnostic (IVD) company in the World. Being one of the pioneers in the diagnostics industry, we are having 1000+ distributors and holds a significant place in the global OEM business. Our world-class manufacturing facility will take us to the next step of evolution. Built on 200,000 square feet of land, our 80,000 sq.ft., GMP and FDA compliant certified plant is purpose-built for the global and domestic market needs. Agappe is focused on the research, design, and production of clinical chemistry reagents and instrument.
+					{!! $data->company_history !!}
 				</p>
 
 				<div class="row">
 					<div class="col-md-3 mt-4">
-						<h1>65 +</h1>
+						<h1>{{$data->country_support}} +</h1>
 						<label>COUNTRIES</label>
 					</div>
 
 					<div class="col-md-3 mt-4">
-						<h1>40k +</h1>
+						<h1>{{$data->customers}} +</h1>
 						<label>CUSTOMERS</label>
 					</div>
 
 					<div class="col-md-3 mt-4">
-						<h1>750 +</h1>
+						<h1>{{$data->workforce}} +</h1>
 						<label>WORKFORCE</label>
 					</div>
 
 					<div class="col-md-3 mt-4">
-						<h1>750 +</h1>
+						<h1>{{$data->customer_support}}</h1>
 						<label>WORKFORCE</label>
 					</div>
 				</div>
@@ -91,64 +79,29 @@
 	<div class="container">
 		<div class="row align-items-center">
 			<div class="col-md-5">
-				<img src="{{ url("user") }}/image/icon.jpg" class="img-fluid">
-				<h3>OUR CORE VALUES AND PRINCIPLE</h3>
+				<img src="{{ asset('/backend/valueIcon')  }}/{{$values->icon}}" class="img-fluid">
+				<h3>{{$values->title}}</h3>
 				<div class="mt-4">
-					<span>Agappe, from its inception, had a different perspective in its view on the work culture and we had made changes throughout our corporate existence that helped us become a Human centric organization.</span>
+					<span>{!! $values->description !!}</span>
 				</div>
 			</div>
 			<div class="col-md-7">
 				<div class="row">
 
-
+                    @if($valueBox)
+                    @foreach ($valueBox as $v)
 					<div class="col-md-6 box mt-5">
 						<div class="border rounded p-4">
-							<label><i class="bi bi-back"></i>&nbsp;&nbsp;Trust</label>
+							<label><img src="{{ asset('/backend/valueBoxIcon') }}/{{$v->image}}" style="max-width: 20px;">  &nbsp;&nbsp;{{$v->values_title}}</label>
 							<div class="mt-3">
 								<p>
-									Trust is an integral part of any relationship. Our actions and behaviours are all based on this simple trait. Agappe takes pride in the trust that its business partners and the employees showcase.
+									{!! $v->values_description !!}
 								</p>
 							</div>
 						</div>
 					</div>
-
-
-					<div class="col-md-6 box mt-5">
-						<div class="border rounded p-4">
-							<label><i class="bi bi-back"></i>&nbsp;&nbsp;Trust</label>
-							<div class="mt-3">
-								<p>
-									Trust is an integral part of any relationship. Our actions and behaviours are all based on this simple trait. Agappe takes pride in the trust that its business partners and the employees showcase.
-								</p>
-							</div>
-						</div>
-					</div>
-
-
-					<div class="col-md-6 box mt-5">
-						<div class="border rounded p-4">
-							<label><i class="bi bi-back"></i>&nbsp;&nbsp;Trust</label>
-							<div class="mt-3">
-								<p>
-									Trust is an integral part of any relationship. Our actions and behaviours are all based on this simple trait. Agappe takes pride in the trust that its business partners and the employees showcase.
-								</p>
-							</div>
-						</div>
-					</div>
-
-
-					<div class="col-md-6 box mt-5">
-						<div class="border rounded p-4">
-							<label><i class="bi bi-back"></i>&nbsp;&nbsp;Trust</label>
-							<div class="mt-3">
-								<p>
-									Trust is an integral part of any relationship. Our actions and behaviours are all based on this simple trait. Agappe takes pride in the trust that its business partners and the employees showcase.
-								</p>
-							</div>
-						</div>
-					</div>
-
-
+                    @endforeach
+                    @endif
 
 				</div>
 
@@ -167,8 +120,8 @@
 	<div class="container">
 		<div>
 			<center>
-				<strong class="cathead">Our Belief System</strong><br>
-				<div class="mt-3 catdetails">We believe in providing high quality diagnostic solutions to our believers, through <br>highest level of customer connect by ensuring innovative and affordable products for<br> an everlasting relationship</div>
+				<strong class="cathead">{{$beliefSystem->belief_title}}</strong><br>
+				<div class="mt-3 catdetails">{!! $beliefSystem->description !!}</div>
 			</center>
 		</div>
 		<div class="row pt-5">
@@ -178,7 +131,7 @@
 				<div class="mostcat2 p-5">
 					<strong>Our Mission</strong><br>
 					<div class="mt-3">
-						<span>To expand and continuously improve our products and services with a world class R&D program and to provide the best work environment for our employees to meet and exceed their true potential and to thrive in a world of excellence.</span>
+						<span>{!! $beliefSystem->mission !!}</span>
 					</div>
 
 				</div>
@@ -191,7 +144,7 @@
 				<div class="mostcat2 p-5">
 					<strong>Our Vision</strong><br>
 					<div class="mt-3">
-						<span>To establish globally as a premier In-Vitro diagnostic corporation and to be the best partner in the diagnostic field for the welfare of mankind.</span>
+						<span>{!! $beliefSystem->vision !!}</span>
 					</div>
 
 				</div>
@@ -270,11 +223,11 @@
 
 
 
-			
+
 		</ul>
 
 		<ul class="uk-slideshow-nav uk-dotnav uk-margin"></ul>
-		
+
 
 
 	</div>
@@ -289,24 +242,16 @@
 
 
 			<div class="col-md-5">
-				<center><img src="{{ url("user") }}/image/mm2.webp" class="img-fluid"></center>
+				<center><img src="{{ asset('backend/founderImage') }}/{{$founderMessage->founder_image}}" class="img-fluid"></center>
 			</div>
 
 
 			<div class="col-md-7">
-				<label>Message From Chairman&nbsp;&nbsp;<i class="bi bi-dash-lg"></i></label>
-				<div class="mt-4">
-					<strong>“Thanks Be Unto God For His Unspeakable Gift“</strong>
-				</div>
+				<label>Message From Founder&nbsp;&nbsp;<i class="bi bi-dash-lg"></i></label>
 
-				<div class="mt-4">
-					<p>As an adventure steps in to the arena of diagnostic industry our VISION is to establish globally as a premier in-vitro diagnostic corporation and to be the best partner in the diagnostic field for the welfare of mankind. Our Mission is to expand and continuously improve our products and services with a world class R&D programme and to provide the best work environment for our employees to meet and exceed their true potential and to thrive in a world of excellence.</p>
-				</div>
-
-				<div class="mt-4">
-					<em>“Thanks Be Unto God For His Unspeakable Gift“</em><br>
-					<b>Joseph John</b>
-				</div>
+                <div class="message mt-3">
+                    {!! $founderMessage->message !!}
+                </div>
 
 				<div class="mt-5">
 					<a href="">View Profile</a>
@@ -315,7 +260,7 @@
 
 			</div>
 
-			
+
 		</div>
 	</div>
 </section>
@@ -331,18 +276,10 @@
 		<div class="row">
 			<div class="col-md-7">
 				<label>Message From Chairman&nbsp;&nbsp;<i class="bi bi-dash-lg"></i></label>
-				<div class="mt-4">
-					<strong>“Thanks Be Unto God For His Unspeakable Gift“</strong>
-				</div>
 
-				<div class="mt-4">
-					<p>As an adventure steps in to the arena of diagnostic industry our VISION is to establish globally as a premier in-vitro diagnostic corporation and to be the best partner in the diagnostic field for the welfare of mankind. Our Mission is to expand and continuously improve our products and services with a world class R&D programme and to provide the best work environment for our employees to meet and exceed their true potential and to thrive in a world of excellence.</p>
-				</div>
-
-				<div class="mt-4">
-					<em>“Thanks Be Unto God For His Unspeakable Gift“</em><br>
-					<b>Joseph John</b>
-				</div>
+                <div class="mt-3">
+                    {!! $chairmanMessage->message !!}
+                </div>
 
 				<div class="mt-5">
 					<a href="">View Profile</a>
@@ -352,7 +289,7 @@
 			</div>
 
 			<div class="col-md-5">
-				<center><img src="{{ url("user") }}/image/mm3.webp" class="img-fluid"></center>
+				<center><img src="{{ asset('backend/chairmanImage') }}/{{$chairmanMessage->chairman_image}}" class="img-fluid"></center>
 			</div>
 		</div>
 	</div>
@@ -364,30 +301,22 @@
 
 
 
-<section class="membersection">
+<section class="membersection pb-2">
 	<div class="container">
 		<div class="row">
 
-			
+
 			<div class="col-md-5">
-				<center><img src="{{ url("user") }}/image/mm1.webp" class="img-fluid"></center>
+				<center><img src="{{ asset('backend/mdImage') }}/{{$mdMessage->md_image}}" class="img-fluid"></center>
 			</div>
 
 
 			<div class="col-md-7">
-				<label>Message From Chairman&nbsp;&nbsp;<i class="bi bi-dash-lg"></i></label>
-				<div class="mt-4">
-					<strong>“Thanks Be Unto God For His Unspeakable Gift“</strong>
-				</div>
+				<label>Message From MD&nbsp;&nbsp;<i class="bi bi-dash-lg"></i></label>
 
-				<div class="mt-4">
-					<p>As an adventure steps in to the arena of diagnostic industry our VISION is to establish globally as a premier in-vitro diagnostic corporation and to be the best partner in the diagnostic field for the welfare of mankind. Our Mission is to expand and continuously improve our products and services with a world class R&D programme and to provide the best work environment for our employees to meet and exceed their true potential and to thrive in a world of excellence.</p>
-				</div>
-
-				<div class="mt-4">
-					<em>“Thanks Be Unto God For His Unspeakable Gift“</em><br>
-					<b>Joseph John</b>
-				</div>
+                <div class="mt-3">
+                    {!! $mdMessage->message !!}
+                </div>
 
 				<div class="mt-5">
 					<a href="">View Profile</a>
@@ -403,7 +332,7 @@
 
 
 
-<section class="blogsection">
+{{-- <section class="blogsection">
 	<div class="container pt-4 pb-4">
 
 		<div class="row mb-4 pcathead pb-3">
@@ -439,7 +368,7 @@
 								<div class="mt-5">
 									<label><?php echo date('M d-y') ?></label>
 								</div>
-								
+
 							</div>
 						</div>
 					</li>
@@ -456,7 +385,7 @@
 								<div class="mt-5">
 									<label><?php echo date('M d-y') ?></label>
 								</div>
-								
+
 							</div>
 						</div>
 					</li>
@@ -472,7 +401,7 @@
 								<div class="mt-5">
 									<label><?php echo date('M d-y') ?></label>
 								</div>
-								
+
 							</div>
 						</div>
 					</li>
@@ -488,7 +417,7 @@
 								<div class="mt-5">
 									<label><?php echo date('M d-y') ?></label>
 								</div>
-								
+
 							</div>
 						</div>
 					</li>
@@ -496,7 +425,7 @@
 
 
 
-					
+
 				</ul>
 
 				<a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slider-item="previous"></a>
@@ -508,11 +437,11 @@
 
 		</div>
 
-		
+
 
 
 	</div>
-</section>
+</section> --}}
 
 
 

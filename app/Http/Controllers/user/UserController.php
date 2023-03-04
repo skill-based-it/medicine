@@ -17,7 +17,21 @@ class UserController extends Controller
 
     public function about(){
 
-    	 return view("user.layouts.about");
+        $data = DB::table('about_uses')->where('id',1)->first();
+
+        $aboutUsImages = DB::table('about_us_images')->where('about_us_id','1')->get();
+
+        $values = DB::table('values')->where('id',1)->first();
+
+        $valueBox = DB::table('value_details')->take(6)->orderBy('id','DESC')->get();
+
+        $beliefSystem = DB::table('belief_systems')->where('id',1)->first();
+
+        $founderMessage = DB::table('founder_messages')->where('id',1)->first();
+        $chairmanMessage = DB::table('chairman_messages')->where('id',1)->first();
+        $mdMessage = DB::table('md_messages')->where('id',1)->first();
+
+    	 return view("user.layouts.about",compact('data','aboutUsImages','values','valueBox','beliefSystem','founderMessage','chairmanMessage','mdMessage'));
     }
 
 
@@ -80,6 +94,31 @@ class UserController extends Controller
     {
         $data = DB::table('blogs')->where('id',$id)->first();
         return view('user.layouts.blogdetails',compact('data'));
+    }
+
+    public function categoryprod($id)
+    {
+        $product = DB::table('products')->where('cat_id',$id)->get();
+        return view('user.layouts.categoreyproduct',compact('product'));
+    }
+
+    public function messageSubmit(Request $request)
+    {
+        $data = array(
+            'name'=>$request->name,
+            'phone'=>$request->phone,
+            'email'=>$request->email,
+            'message'=>$request->message,
+        );
+
+        $insert = DB::table('customer_messages')->insert($data);
+
+        $notification=array(
+			'messege'=>'Your Message Sent Successfully Successfull',
+			'alert-type'=>'success'
+		);
+		return redirect()->back()->with($notification);
+
     }
 
 
