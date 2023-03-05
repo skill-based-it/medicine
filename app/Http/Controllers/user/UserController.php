@@ -12,7 +12,12 @@ class UserController extends Controller
     {
         $product = DB::table('products')->orderBy('id','DESC')->take(15)->get();
         $blogs = DB::table('blogs')->orderBy('id','DESC')->take(10)->get();
-        return view("user.layouts.home",compact('product','blogs'));
+
+        $slider = DB::table('slider_informations')->where('status',1)->orderBy('index_no','ASC')->get();
+
+        $data = DB::table('about_uses')->where('id',1)->first();
+
+        return view("user.layouts.home",compact('product','blogs','slider','data'));
     }
 
     public function about(){
@@ -52,8 +57,20 @@ class UserController extends Controller
 
 
     public function careers(){
+        $data = DB::table('about_uses')->where('id',1)->first();
 
-    	 return view("user.layouts.careers");
+        $carrers_info = DB::table('carrer_infos')->where('id',1)->first();
+
+        $location = DB::table('opening_locations')->where('status',1)->get();
+        $jobs = DB::table('opening_jobs')->where('status',1)->get();
+
+        $openings = DB::table('publish_openings')->where('status',1)->get();
+
+        $workplace = DB::table('work_places')->where('id',1)->first();
+
+        $promisses = DB::table('carrer_promisses')->where('status',1)->get();
+
+    	 return view("user.layouts.careers",compact('data','carrers_info','location','jobs','openings','workplace','promisses'));
     }
 
 
@@ -113,11 +130,7 @@ class UserController extends Controller
 
         $insert = DB::table('customer_messages')->insert($data);
 
-        $notification=array(
-			'messege'=>'Your Message Sent Successfully Successfull',
-			'alert-type'=>'success'
-		);
-		return redirect()->back()->with($notification);
+		return redirect()->back()->with('success','Your Message Is Successfully Sent');
 
     }
 

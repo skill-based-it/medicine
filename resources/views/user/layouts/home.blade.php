@@ -12,61 +12,43 @@
 
 		<ul class="uk-slideshow-items">
 
-
+            @if($slider)
+            @foreach ($slider as $v)
 			<li>
-				<div class="row">
-					<div class="col-md-6">
-						<div class="">
-							{{-- <span><i class="bi bi-play-circle"></i>&nbsp;&nbsp;Watch Our Video</span> --}}
-							<div class="mt-4 mb-4"><strong>Your Best Partner In Diagonistic</strong></div><br>
-							<a href="{{url('/products')}}" class="button">Explore Products</a>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="">
+
+                            <!-- This is a button toggling the modal -->
+                            @if($v->vedio_link != '')
+                            <button class="uk-button uk-button-default uk-margin-small-right" type="button" uk-toggle="target: #modal-example-{{$v->id}}">
+                                <i class="bi bi-play-circle"></i>&nbsp;&nbsp;Watch Our Video
+                            </button>
+                            @endif
+
+
+                            <!-- This is the modal -->
+                            <div id="modal-example-{{$v->id}}" uk-modal>
+                                <div class="uk-modal-dialog uk-modal-body" style="padding: 0px;width:560px;">
+
+                                    {!! $v->vedio_link !!}
+
+                                </div>
+                            </div>
+							<div class="mt-4 mb-4"><strong>{{$v->title}}</strong></div><br>
+                            @if($v->button_link != '' || $v->button_name != '')
+							<a href="{{url($v->button_link)}}" class="button">{{$v->button_name}}</a>
+                            @endif
 						</div>
 					</div>
 
 					<div class="col-md-6">
-						<img src="{{ asset("user") }}/image/heading_image.jpeg">
+                        <img src="{{ asset("backend/sliderImage") }}/{{$v->image}}">
 					</div>
 				</div>
 			</li>
-
-
-
-			<li>
-				<div class="row">
-					<div class="col-md-6">
-						<div class="">
-							{{-- <span><i class="bi bi-play-circle"></i>&nbsp;&nbsp;Watch Our Video</span> --}}
-							<div class="mt-4 mb-4"><strong>Performance Ahead Of Expectation</strong></div><br>
-							<a href="{{url('/products')}}" class="button">Explore Products</a>
-						</div>
-					</div>
-
-					<div class="col-md-6">
-						<img src="{{ asset("user") }}/image/banner_1608717989.webp">
-					</div>
-				</div>
-			</li>
-
-
-
-			<li>
-				<div class="row">
-					<div class="col-md-6">
-						<div class="">
-							{{-- <span><i class="bi bi-play-circle"></i>&nbsp;&nbsp;Watch Our Video</span> --}}
-							<div class="mt-4 mb-4"><strong>Your Best Partner In Diagonistic</strong></div><br>
-							<a href="" class="button">Explore Products</a>
-						</div>
-					</div>
-
-					<div class="col-md-6">
-						<img src="{{ asset("user") }}/image/banner 2 (1)_1608114172 (2).webp">
-					</div>
-				</div>
-			</li>
-
-
-
+            @endforeach
+            @endif
 
 		</ul>
 
@@ -214,25 +196,25 @@
 			<div class="col-md-8 mt-3">
 				<div class="row">
 					<div class="col-md-4 mt-4">
-						<h1>65 +</h1>
+						<h1>{{$data->country_support}} +</h1>
 						<label>COUNTRIES</label>
 					</div>
 
 					<div class="col-md-4 mt-4">
-						<h1>40k +</h1>
+						<h1>{{$data->customers}} +</h1>
 						<label>CUSTOMERS</label>
 					</div>
 
 					<div class="col-md-4 mt-4">
-						<h1>750 +</h1>
+						<h1>{{$data->workforce}} +</h1>
 						<label>WORKFORCE</label>
 					</div>
 				</div>
 
 				<br><br>
-				<a href="">ABOUT AGAPPE</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<a href="">CORPORATE BROCHURE</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<a href=""><i class="bi bi-play-fill"></i>&nbsp; CORPORATE VIDEO</a>
+                    {{-- <a href="">ABOUT AGAPPE</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="">CORPORATE BROCHURE</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href=""><i class="bi bi-play-fill"></i>&nbsp; CORPORATE VIDEO</a> --}}
 
 			</div>
 		</div>

@@ -2,7 +2,20 @@
 @section('content')
 
 
+<style>
+    .lifecycle-images img {
+    max-width: 179px;
+    margin-top: 20px;
+    padding: 0px;
+}
 
+.lifecycle-images .col-6 {
+    padding: 0px;
+    margin: 0px;
+    text-align: center;
+    width: 195px;
+}
+</style>
 
 
 <section class="aboutsection pt-5">
@@ -14,29 +27,28 @@
                     <span><b>Career@Optimum</b></span>
                 </div>
                 <div class="page-title">
-                    <p>Optimum is for those who step up.</p>
-                    <b>Do You ?</b>
+                    <p>{{$carrers_info->carrer_title}}</p>
                 </div>
                 <div class="section-description">
-                    <span>Being an Agappean, is an enriching and exciting experience. Here, we consider people to be our greatest asset. We understand that business growth is a result of talent growth and hence we are committed towards building a team which is constantly learning and evolving. We seek professionals who aim beyond the limits, who are thriving to fly high, and who never settle for the usual.</span>
+                    {!! $carrers_info->carrer_description !!}
                 </div>
-                <div class="mail-drop">
+                {{-- <div class="mail-drop">
                     <b>Drop Your Mail In <a href="mailto:careers@optimum.in">careers@optimum.in</a></b>
                 </div>
                 <div class="view-opening mt-3">
                     <a href="#">View All Opening</a>
-                </div>
+                </div> --}}
 
             </div>
 
             <div class="col-lg-7 col-md-7 col-12">
                 <div class="carer-image">
                     <div class="carer-main-image">
-                        <img src="{{ url("user") }}/image/carrers_person.webp" alt="" class="img-fluid">
+                        <img src="{{ asset('/backend/carrerInfoImage') }}/{{$carrers_info->image}}" alt="" class="img-fluid">
                         <img src="{{ url("user") }}/image/carer-polygyon.png" alt="" class="img-fluid rotate linear infinite" id="carer_polygyon">
                         <img src="{{ url("user") }}/image/carer-triangle.png" alt="" class="img-fluid" id="carer_triangle">
-                        <img src="{{ url("user") }}/image/carer-dotted.png" alt="" class="img-fluid" id="carer_dotted">
-                        <img src="{{ url("user") }}/image/carer-circle.png" alt="" class="img-fluid" id="carer_circle">
+                        {{-- <img src="{{ url("user") }}/image/carer-dotted.png" alt="" class="img-fluid" id="carer_dotted"> --}}
+                        {{-- <img src="{{ url("user") }}/image/carer-circle.png" alt="" class="img-fluid" id="carer_circle"> --}}
                     </div>
                 </div>
             </div>
@@ -60,12 +72,22 @@
                         <label>Jobs By Location</label>
                         <select class="form-select" name="" id="">
                         <option>All</option>
+                        @if($location)
+                        @foreach ($location as $v)
+                            <option value="{{$v->id}}">{{$v->location_name}}</option>
+                        @endforeach
+                        @endif
                         </select>
                     </div>
                     <div class="col-6" id="formSingle">
                         <label>Jobs By Role</label>
                         <select class="form-select" name="" id="">
                         <option>All</option>
+                        @if($jobs)
+                        @foreach ($jobs as $v)
+                            <option value="{{$v->id}}">{{$v->jobs_name}}</option>
+                        @endforeach
+                        @endif
                         </select>
                     </div>
                 </div>
@@ -73,27 +95,34 @@
         </div>
 
         <div class="row mt-5">
+            @if($openings)
+            @foreach ($openings as $v)
             <div class="col-lg-3 col-md-6 col-12">
                 <div class="opening-single">
                     <a href="#">
                         <div class="opening-single-box-title">
-                            <b>Manager - International Sales</b>
+                            <b>{{$v->opening_title}}</b>
                         </div>
                         <div class="opening-sigle-description mt-3">
-                            <span>Presently at Head Office. In the later stage, he should be ready to relocate to any of the Spanish-speaking countries.</span>
+                            <span>{!! $v->opening_description !!}</span>
                         </div>
                         <hr>
+                        @php
+                        $location = DB::table('opening_locations')->where('id',$v->location_id)->first();
+                        @endphp
                         <div class="opening-bottom">
-                            <b>Openings - 1</b><br> <b>Place: Colombia</b>
+                            <b>Openings - {{$v->opening_amount}}</b><br> <b>Place: {{$location->location_name}}</b>
                         </div>
                     </a>
                 </div>
             </div>
+            @endforeach
+            @endif
         </div>
 
-        <div class="section-button">
+        {{-- <div class="section-button">
             <a href="#">View All Opening</a>
-        </div>
+        </div> --}}
 
 	</div>
 </section>
@@ -105,84 +134,57 @@
             <div class="col-lg-5 col-md-5 col-12">
 
                 <div class="section-middle-title">
-                <b>Career@Optimum</b><br>
-                <span>Right Place to Work.</span>
+                <b>{{$workplace->title}}</b><br>
                 </div>
                 <div class="section-description mt-3">
-                    <span>Being an Agappean, is an enriching and exciting experience. Here, we consider people to be our greatest asset. We understand that business growth is a result of talent growth and hence we are committed towards building a team which is constantly learning and evolving. We seek professionals who aim beyond the limits, who are thriving to fly high, and who never settle for the usual.</span>
+                    <span>{!! $workplace->description !!}</span>
                 </div>
 
             </div>
 
             <div class="col-lg-7 col-md-7 col-12">
-                <div class="lifecycle-image">
-                    <img src="{{ url("user") }}/image/lifecycle1.webp" alt="" class="img-fluid">
-                    <img src="{{ url("user") }}/image/lifecycle2.webp" alt="" class="img-fluid">
-                    <img src="{{ url("user") }}/image/lifecycle3.webp" alt="" class="img-fluid">
-                    <img src="{{ url("user") }}/image/lifecycle4.webp" alt="" class="img-fluid">
+                <div class="lifecycle-images">
+                    <div class="row">
+                        @php
+                        $images = DB::table('work_place_images')->where('work_place_id',1)->get();
+                        @endphp
+                        @if($images)
+                        @foreach ($images as $i)
+                        <div class="col-6">
+                            <img src="{{ asset('/backend/workplaceImage/') }}/{{$i->images}}" alt="" class="img-fluid">
+                        </div>
+                        @endforeach
+                        @endif
+                    </div>
                 </div>
                 <div class="background-design">
 
                 </div>
             </div>
 
-            
+
         </div>
 
 
         <div class="row" id="lifecycle-reel">
+            @if($promisses)
+            @foreach ($promisses as $v)
+
             <div class="col-lg-3 col-md-6 col-12">
                 <div class="lifecycle-single">
                     <div class="lc-icon">
-                        <img src="{{ url("user") }}/image/lifecycle_reel1.svg" alt="" class="img-fluid">
+                        <img src="{{ asset('/backend/carrerPromisses') }}/{{$v->icon}}" alt="" class="img-fluid">
                     </div>
                     <div class="lc-title">
-                        <span>Extraordinary Opportunities For Growth</span>
+                        <span>{{$v->title}}</span>
                     </div>
                     <div class="lc-description">
-                        <span>We offer positions that allow you to challenge the tried and true, and to collaborate across technologies and continents.</span>
+                        <span>{!! $v->description !!}</span>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6 col-12">
-                <div class="lifecycle-single">
-                    <div class="lc-icon">
-                        <img src="{{ url("user") }}/image/lifecycle_reel2.svg" alt="" class="img-fluid">
-                    </div>
-                    <div class="lc-title">
-                        <span>Extraordinary Opportunities For Growth</span>
-                    </div>
-                    <div class="lc-description">
-                        <span>We offer positions that allow you to challenge the tried and true, and to collaborate across technologies and continents.</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-12">
-                <div class="lifecycle-single">
-                    <div class="lc-icon">
-                        <img src="{{ url("user") }}/image/lifecycle_reel3.svg" alt="" class="img-fluid">
-                    </div>
-                    <div class="lc-title">
-                        <span>Extraordinary Opportunities For Growth</span>
-                    </div>
-                    <div class="lc-description">
-                        <span>We offer positions that allow you to challenge the tried and true, and to collaborate across technologies and continents.</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-12">
-                <div class="lifecycle-single">
-                    <div class="lc-icon">
-                        <img src="{{ url("user") }}/image/lifecycle_reel3.svg" alt="" class="img-fluid">
-                    </div>
-                    <div class="lc-title">
-                        <span>Extraordinary Opportunities For Growth</span>
-                    </div>
-                    <div class="lc-description">
-                        <span>We offer positions that allow you to challenge the tried and true, and to collaborate across technologies and continents.</span>
-                    </div>
-                </div>
-            </div>
+            @endforeach
+            @endif
         </div>
 
 
@@ -198,25 +200,25 @@
 			<div class="col-md-8 mt-3">
 				<div class="row">
 					<div class="col-md-4 mt-4">
-						<h1>65 +</h1>
+						<h1>{{$data->country_support}} +</h1>
 						<label>COUNTRIES</label>
 					</div>
 
 					<div class="col-md-4 mt-4">
-						<h1>40k +</h1>
+						<h1>{{$data->customers}} +</h1>
 						<label>CUSTOMERS</label>
 					</div>
 
 					<div class="col-md-4 mt-4">
-						<h1>750 +</h1>
+						<h1>{{$data->workforce}} +</h1>
 						<label>WORKFORCE</label>
 					</div>
 				</div>
 
 				<br><br>
-				<a href="">ABOUT AGAPPE</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				{{-- <a href="">ABOUT AGAPPE</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<a href="">CORPORATE BROCHURE</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<a href=""><i class="bi bi-play-fill"></i>&nbsp; CORPORATE VIDEO</a>
+				<a href=""><i class="bi bi-play-fill"></i>&nbsp; CORPORATE VIDEO</a> --}}
 
 			</div>
 		</div>
@@ -286,7 +288,7 @@
         <ul class="uk-slider-nav uk-dotnav uk-flex-center uk-margin"></ul>
 
     </div>
-	
+
 
 	</div>
 </section>
@@ -294,40 +296,9 @@
 
 
 
-	<section class="clientsection" style="background-image: url({{ url("user") }}/image/bgg.webp);">
-		<div class="container">
-			<div class="clientdetails">
-				Building Stronger<br> Partnerships in In-Vitro<br> Diagnostics For Over 25 Years
-			</div>
-			<div class="col-md-8 mt-3">
-				<div class="row">
-					<div class="col-md-4 mt-4">
-						<h1>65 +</h1>
-						<label>COUNTRIES</label>
-					</div>
 
-					<div class="col-md-4 mt-4">
-						<h1>40k +</h1>
-						<label>CUSTOMERS</label>
-					</div>
 
-					<div class="col-md-4 mt-4">
-						<h1>750 +</h1>
-						<label>WORKFORCE</label>
-					</div>
-				</div>
-
-				<br><br>
-				<a href="">ABOUT AGAPPE</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<a href="">CORPORATE BROCHURE</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<a href=""><i class="bi bi-play-fill"></i>&nbsp; CORPORATE VIDEO</a>
-
-			</div>
-		</div>
-	</div>
-</section>
-
-<section class="productsection">
+{{-- <section class="productsection">
 	<div class="container">
 
 		<div class="row pb-4 pcathead">
@@ -485,7 +456,7 @@
 
 
 		</div>
-	</section>
+	</section> --}}
 
 
 

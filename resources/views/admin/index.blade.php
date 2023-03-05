@@ -316,6 +316,32 @@
                     </ul>
                   </li>
 
+                  <li>
+                    <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                      <i class="icon-grid menu-icon"></i><span class="nav-text">Carrer Settings</span>
+                    </a>
+                    <ul aria-expanded="false">
+                      <li><a href="{{ url('/carrer_infos')}}">Carrer Infos</a></li>
+                      <li><a href="{{ url('/createlocation')}}">Create Opening Location</a></li>
+                      <li><a href="{{ url('/opening_jobs')}}">Opening Jobs</a></li>
+                      <li><a href="{{ url('/publish_opening')}}">Publish Opening</a></li>
+                      <li><a href="{{ url('/workplace')}}">Work Place Information</a></li>
+                      <li><a href="{{ url('/carrer_promisses')}}">Carrer Promisses</a></li>
+                    </ul>
+                  </li>
+
+                  <li>
+                    <a href="{{ url("customerMessages") }}" aria-expanded="false">
+                      <i class="icon-envelope menu-icon"></i><span class="nav-text">Messages</span>
+                    </a>
+                  </li>
+
+                  <li>
+                    <a href="{{ url("sliderInfo") }}" aria-expanded="false">
+                      <i class="icon-settings menu-icon"></i><span class="nav-text">Slider Information</span>
+                    </a>
+                  </li>
+
 
 
 
