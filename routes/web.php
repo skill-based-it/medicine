@@ -16,6 +16,9 @@ use App\Http\Controllers\admin\ProductsController;
 use App\Http\Controllers\admin\blogcontroller;
 use App\Http\Controllers\admin\TechoptimumController;
 use App\Http\Controllers\admin\AboutUsController;
+use App\Http\Controllers\admin\CustomerMessage;
+use App\Http\Controllers\admin\SliderController;
+use App\Http\Controllers\admin\CarrerController;
 
 
 /*
@@ -184,3 +187,59 @@ Route::get('/chairmanMessage',[AboutUsController::class,'chairmanMessage']);
 Route::post('/updateChairmanMessage',[AboutUsController::class,'updateChairmanMessage']);
 Route::get('/mdMessage',[AboutUsController::class,'mdMessage']);
 Route::post('/updateMdMessage',[AboutUsController::class,'updateMdMessage']);
+
+
+// messages
+
+Route::get('/customerMessages',[CustomerMessage::class,'index']);
+Route::get('/deletemessage/{id}',[CustomerMessage::class,'deletemessage']);
+
+// slider
+Route::get('/sliderInfo',[SliderController::class,'index']);
+Route::get('/createSlider',[SliderController::class,'create']);
+Route::post('/insertSlider',[SliderController::class,'insertSlider']);
+Route::get('/editSlider/{id}',[SliderController::class,'editSlider']);
+Route::post('/updateSlider/{id}',[SliderController::class,'updateSlider']);
+Route::get('/deleteSlider/{id}',[SliderController::class,'deleteSlider']);
+
+// career infos
+Route::get('/carrer_infos',[CarrerController::class,'carrer_infos']);
+Route::post('/carrerinfo_update',[CarrerController::class,'carrerinfo_update']);
+
+//location
+Route::get('/createlocation',[CarrerController::class,'createlocation']);
+Route::post('/insertLocation',[CarrerController::class,'insertLocation']);
+Route::get('/manage_location',[CarrerController::class,'manage_location']);
+Route::get('/editlocations/{id}',[CarrerController::class,'editlocations']);
+Route::post('/updateLocation/{id}',[CarrerController::class,'updateLocation']);
+Route::get('/deletelocation/{id}',[CarrerController::class,'deletelocation']);
+
+//jobs
+Route::get('/opening_jobs',[CarrerController::class,'opening_jobs']);
+Route::post('/insertJobs',[CarrerController::class,'insertJobs']);
+Route::get('/manage_jobs',[CarrerController::class,'manage_jobs']);
+Route::get('/editjobs/{id}',[CarrerController::class,'editjobs']);
+Route::post('/updateJobs/{id}',[CarrerController::class,'updateJobs']);
+Route::get('/deleteJobs/{id}',[CarrerController::class,'deleteJobs']);
+
+// opening
+Route::get('/publish_opening',[CarrerController::class,'publish_opening']);
+Route::post('/insertOpening',[CarrerController::class,'insertOpening']);
+Route::get('/manageopening',[CarrerController::class,'manageopening']);
+Route::get('/editopenings/{id}',[CarrerController::class,'editopenings']);
+Route::post('/updateOpening/{id}',[CarrerController::class,'updateOpening']);
+Route::get('/deleteopening/{id}',[CarrerController::class,'deleteopening']);
+
+// work palce
+Route::get('/workplace',[CarrerController::class,'workplace']);
+Route::post('/updateWorkplaceInfo',[CarrerController::class,'updateWorkplaceInfo']);
+
+// promisses
+Route::get('/carrer_promisses',[CarrerController::class,'carrer_promisses']);
+Route::post('/insertPromisses',[CarrerController::class,'insertPromisses']);
+Route::get('/managepromisses',[CarrerController::class,'managepromisses']);
+Route::get('/editPromisses/{id}',[CarrerController::class,'editPromisses']);
+Route::post('/updatepromisses/{id}',[CarrerController::class,'updatepromisses']);
+Route::get('/deletepromisses/{id}',[CarrerController::class,'deletepromisses']);
+
+

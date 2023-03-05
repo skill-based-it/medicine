@@ -138,12 +138,10 @@
       <div class="col-xl-2 mt-4">
         <strong>Quick Links</strong><br><br>
         <div>
-          <li><a href="">About Us</a></li>
-          <li><a href="">News</a></li>
-          <li><a href="">Support</a></li>
-          <li><a href="">Careers</a></li>
-          <li><a href="">Contact</a></li>
-          <li><a href="">Blog</a></li>
+          <li><a href="{{url('/about')}}">About Us</a></li>
+          <li><a href="{{url('/support')}}">Support</a></li>
+          <li><a href="{{url('/careers')}}">Careers</a></li>
+          <li><a href="{{url('/contact')}}">Contact</a></li>
 
         </div>
       </div>
@@ -173,14 +171,13 @@
 
 
       <div class="col-xl-4 mt-4">
-        <strong>Optimum Made Trade Ltd.</strong><br><br>
+        <strong>{{$websettings->website_name}}</strong><br><br>
         <div class="contactdetails">
           <br>
-        Purana Paltan, Dhaka-1000<br><br>
+        {!! $websettings->address !!}<br><br>
 
-          Tel:+8801875570169<br>
-          Email: info@OptimumMadeTradeLtd.com<br>
-          Web: ww.optimumMadeTradeLtd.com
+          Tel:{{$websettings->phone}}<br>
+          Email: {{$websettings->email}}<br>
         </div>
       </div>
 
@@ -188,11 +185,11 @@
         <strong>Follow</strong><br><br>
         <div class="socialmedia">
 
-          <li><a href=""><i class="bi bi-facebook"></i></a></li>
-          <li><a href=""><i class="bi bi-twitter"></i></a></li>
-          <li><a href=""><i class="bi bi-instagram"></i></a></li>
-          <li><a href=""><i class="bi bi-youtube"></i></a></li>
-          <li><a href=""><i class="bi bi-linkedin"></i></a></li>
+          <li><a href="{{url("$websettings->fb")}}"><i class="bi bi-facebook"></i></a></li>
+          <li><a href="{{url("$websettings->tw")}}"><i class="bi bi-twitter"></i></a></li>
+          <li><a href="{{url("$websettings->in")}}"><i class="bi bi-instagram"></i></a></li>
+          <li><a href="{{url("$websettings->yo")}}"><i class="bi bi-youtube"></i></a></li>
+          <li><a href="{{url("$websettings->li")}}"><i class="bi bi-linkedin"></i></a></li>
 
         </div>
       </div>
@@ -240,6 +237,8 @@
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 <script type="text/javascript">
 
 $('.single-item').slick();
@@ -255,6 +254,28 @@ setInterval(function() {
 }, 100);
 
 </script>
+
+
+@if(Session::has('success'))
+	<script>
+		swal('', '{{ session('success') }}', 'success');
+	</script>
+
+	@endif
+
+	@if(Session::has('error'))
+	<script>
+		swal('', '{{ session('error') }}', 'error');
+	</script>
+
+	@endif
+
+	@if(Session::has('info'))
+	<script>
+		swal('', '{{ session('info') }}', 'info');
+	</script>
+
+	@endif
 
 </body>
 </html>
