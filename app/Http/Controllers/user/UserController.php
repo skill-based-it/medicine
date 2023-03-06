@@ -70,7 +70,9 @@ class UserController extends Controller
 
         $promisses = DB::table('carrer_promisses')->where('status',1)->get();
 
-    	 return view("user.layouts.careers",compact('data','carrers_info','location','jobs','openings','workplace','promisses'));
+        $agentReviews = DB::table('agent_reviews')->where('status',1)->orderBy('id','DESC')->get();
+
+    	 return view("user.layouts.careers",compact('data','carrers_info','location','jobs','openings','workplace','promisses','agentReviews'));
     }
 
 

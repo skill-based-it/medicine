@@ -406,4 +406,123 @@ class CarrerController extends Controller
         return redirect()->back()->with($notification);
     }
 
+    public function agent_review()
+    {
+        return view('admin.carrer.agent_review');
+    }
+
+    public function insertagent_review(Request $request)
+    {
+        $data = array(
+            'description'=>$request->description,
+            'agent_name'=>$request->agent_name,
+            'designation'=>$request->designation,
+            'location'=>$request->location,
+            'image'=>'0',
+            'status'=>$request->status
+        );
+
+        $insert = DB::table('agent_reviews')->insertGetId($data);
+
+        if($insert)
+        {
+            $file = $request->file('image');
+
+            if($file)
+            {
+                $imageName = rand().'.'.$file->getClientOriginalExtension();
+
+                $file->move(base_path().'/backend/agentImage/',$imageName);
+
+                DB::table('agent_reviews')->where('id',$insert)->update(['image'=>$imageName]);
+            }
+
+        }
+
+        $notification=array(
+            'messege'=>'Agent Review Create Successfully',
+            'alert-type'=>'success'
+        );
+        return redirect()->back()->with($notification);
+
+    }
+
+    public function manageagent_review()
+    {
+        $data = DB::table('agent_reviews')->get();
+        return view('admin.carrer.manageagent_review',compact('data'));
+    }
+
+    public function editagentReviews($id)
+    {
+        $data = DB::table('agent_reviews')->where('id',$id)->first();
+        return view('admin.carrer.editagent_reviews',compact('data'));
+    }
+
+    public function updateagent_review(Request $request,$id)
+    {
+        $data = array(
+            'description'=>$request->description,
+            'agent_name'=>$request->agent_name,
+            'designation'=>$request->designation,
+            'location'=>$request->location,
+            'status'=>$request->status
+        );
+
+        $update = DB::table('agent_reviews')->where('id',$id)->update($data);
+
+        $file = $request->file('image');
+
+        if($file)
+        {
+            $pathImage = DB::table('agent_reviews')->where('id',$id)->first();
+
+            $path = base_path().'/backend/agentImage/'.$pathImage->image;
+
+            if(file_exists($path))
+            {
+                unlink($path);
+            }
+
+        }
+
+        if($file)
+        {
+            $imageName = rand().'.'.$file->getClientOriginalExtension();
+
+            $file->move(base_path().'/backend/agentImage/',$imageName);
+
+            DB::table('agent_reviews')->where('id',$id)->update(['image'=>$imageName]);
+        }
+
+
+        $notification=array(
+            'messege'=>'Agent Review Update Successfully',
+            'alert-type'=>'success'
+        );
+        return redirect()->back()->with($notification);
+
+
+    }
+
+    public function deleteagent_review($id)
+    {
+        $pathImage = DB::table('agent_reviews')->where('id',$id)->first();
+
+        $path = base_path().'/backend/agentImage/'.$pathImage->image;
+
+        if(file_exists($path))
+        {
+            unlink($path);
+        }
+
+        $delete = DB::table('agent_reviews')->where('id',$id)->delete();
+
+        $notification=array(
+            'messege'=>'Agent Review Delete Successfully',
+            'alert-type'=>'success'
+        );
+        return redirect()->back()->with($notification);
+    }
+
 }

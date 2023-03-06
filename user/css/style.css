@@ -24,12 +24,12 @@ ul.uk-nav-sub li.active {
 
 .boxshadowheader{
 	box-shadow: 0px -8px 10px 7px rgb(0 0 0 / 13%);
-	padding: 26px;
+	padding: 15px;
 	background: #fff;
 }
 
 .mainheader img{
-	max-height: 28px;
+	max-height: 50px;
 }
 
 .mainheader li{
@@ -1217,5 +1217,29 @@ div#lifecycle-reel {
 @media(max-width: 768px){
 	.container{
 		padding: 0 20px;
+	}
+
+	.clientsection{
+		padding: 0;
+	}
+
+	.virtual .container{
+		padding: 0 20px;
+	}
+
+	.career .container{
+		padding: 0 20px;
+	}
+
+	.contactsection{
+		padding-top: 50px;
+	}
+
+	.supportsection2{
+		padding: 0!important;
+	}
+
+	.clientdetails{
+		padding-top: 50px;
 	}
 }

@@ -9,7 +9,7 @@
     </ul>
 </div>
 
-<div class="container pt-5 pb-5">
+<div class="container pt-4 pb-5">
     {!! $data->details !!}
 </div>
 

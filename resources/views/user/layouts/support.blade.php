@@ -19,7 +19,7 @@
 					Write to us<br>
 					<a href="">Email : {{$settings->email}}</a><br>
 				</div>
-
+				<br>
 			</div>
 
 			<div class="col-md-6">

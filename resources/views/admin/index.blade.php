@@ -327,6 +327,7 @@
                       <li><a href="{{ url('/publish_opening')}}">Publish Opening</a></li>
                       <li><a href="{{ url('/workplace')}}">Work Place Information</a></li>
                       <li><a href="{{ url('/carrer_promisses')}}">Carrer Promisses</a></li>
+                      <li><a href="{{ url('/agent_review')}}">Agent Review</a></li>
                     </ul>
                   </li>
 

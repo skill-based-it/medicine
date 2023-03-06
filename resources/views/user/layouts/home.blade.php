@@ -7,7 +7,7 @@
 
 
 
-<div class="container slidersection">
+<div class="container slidersection mt-4 d-none d-sm-block">
 	<div class="uk-position-relative uk-visible-toggle" tabindex="-1" uk-slideshow="ratio: 10:3; animation: scale">
 
 		<ul class="uk-slideshow-items">
@@ -17,7 +17,7 @@
 			<li>
                 <div class="row">
                     <div class="col-md-6">
-                        <div class="">
+
 
                             <!-- This is a button toggling the modal -->
                             @if($v->vedio_link != '')
@@ -39,7 +39,7 @@
                             @if($v->button_link != '' || $v->button_name != '')
 							<a href="{{url($v->button_link)}}" class="button">{{$v->button_name}}</a>
                             @endif
-						</div>
+
 					</div>
 
 					<div class="col-md-6">
@@ -60,11 +60,87 @@
 </div>
 
 
+
+
+
+
+
+
+<div class="container slidersection mt-4 d-block d-sm-none">
+	<div class="uk-position-relative uk-visible-toggle" tabindex="-1" uk-slideshow="ratio: 2:3; animation: scale">
+
+		<ul class="uk-slideshow-items">
+
+            @if($slider)
+            @foreach ($slider as $v)
+			<li>
+                <div class="row">
+                    <div class="col-md-6">
+
+
+                            <!-- This is a button toggling the modal -->
+                            @if($v->vedio_link != '')
+                            <button class="uk-button uk-button-default uk-margin-small-right" type="button" uk-toggle="target: #modal-example-{{$v->id}}">
+                                <i class="bi bi-play-circle"></i>&nbsp;&nbsp;Watch Our Video
+                            </button>
+                            @endif
+
+
+                            <!-- This is the modal -->
+                            <div id="modal-example-{{$v->id}}" uk-modal>
+                                <div class="uk-modal-dialog uk-modal-body" style="padding: 0px;width:560px;">
+
+                                    {!! $v->vedio_link !!}
+
+                                </div>
+                            </div>
+							<div class="mt-4 mb-4"><strong>{{$v->title}}</strong></div><br>
+                            @if($v->button_link != '' || $v->button_name != '')
+							<a href="{{url($v->button_link)}}" class="button">{{$v->button_name}}</a>
+                            @endif
+
+					</div>
+
+					<div class="col-md-6">
+                        <img src="{{ asset("backend/sliderImage") }}/{{$v->image}}">
+					</div>
+				</div>
+			</li>
+            @endforeach
+            @endif
+
+		</ul>
+
+		<ul class="uk-slideshow-nav uk-dotnav uk-margin"></ul>
+
+
+
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <section class="helpdesk pt-5 pb-5">
 	<div class="container">
 		<div class="row align-items-center">
 
-			<div class="col-lg-4">
+			<div class="col-lg-4 col-md-4 col-sm-6 col-12">
 				<div class="row">
 					<div class="col-2">
 						<center><i class="bi bi-chat-square-dots"></i></center>
@@ -74,11 +150,11 @@
 						<div class="mt-3" style="width: 40px; height: 2px; background: darkblue;"></div>
 
 					</div>
-				</div>
+				</div><br>
 			</div>
 
 
-			<div class="col-lg-4">
+			<div class="col-lg-4 col-md-4 col-sm-6 col-12">
 				<div class="row">
 					<div class="col-2">
 						<center><i class="bi bi-bag"></i></center>
@@ -88,11 +164,11 @@
 						<div class="mt-3" style="width: 40px; height: 2px; background: darkblue;"></div>
 
 					</div>
-				</div>
+				</div><br>
 			</div>
 
 
-			<div class="col-lg-4">
+			<div class="col-lg-4 col-md-4 col-sm-6 col-12">
 				<div class="row">
 					<div class="col-2">
 						<center><i class="bi bi-broadcast-pin"></i></center>
@@ -127,14 +203,14 @@
 	<div class="container">
 
 		<div class="row pb-4 pcathead">
-			<div class="col-lg-8">
+			<div class="col-lg-8 text-sm-start text-center">
 				<div>
 					<strong>Find the product you need</strong>
 				</div>
 			</div>
 
-			<div class="col-lg-4">
-				<div class="float-end">
+			<div class="col-lg-4 text-sm-end text-center">
+				<div class="">
 					<a href="{{url('/products')}}"><span>View All Products &nbsp;&nbsp;<i class="bi bi-plus-lg"></i></a>
 					</div>
 				</div>
@@ -142,7 +218,7 @@
 
 			<div class="uk-position-relative uk-visible-toggle" tabindex="-1" uk-slider>
 
-				<ul class="uk-slider-items uk-child-width-1-2 uk-child-width-1-4@m uk-grid">
+				<ul class="uk-slider-items uk-child-width-1-1 uk-child-width-1-4@m uk-grid">
 
                     @if($product)
                     @foreach ($product as $v)
@@ -193,7 +269,7 @@
 			<div class="clientdetails">
 				Building Stronger<br> Partnerships in In-Vitro<br> Diagnostics For Over 25 Years
 			</div>
-			<div class="col-md-8 mt-3">
+			<div class="col-md-8 mt-3 text-center text-sm-start">
 				<div class="row">
 					<div class="col-md-4 mt-4">
 						<h1>{{$data->country_support}} +</h1>
@@ -210,11 +286,12 @@
 						<label>WORKFORCE</label>
 					</div>
 				</div>
-
+                @php
+                    $brouchere = DB::table('corporate_broucheres')->where('id',1)->first();
+                @endphp
 				<br><br>
-                    {{-- <a href="">ABOUT AGAPPE</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <a href="">CORPORATE BROCHURE</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <a href=""><i class="bi bi-play-fill"></i>&nbsp; CORPORATE VIDEO</a> --}}
+                    <a href="{{url('/about')}}">ABOUT OPTIMUM</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a download="" href="{{asset('/backend/corporateBrouchere')}}/{{$brouchere->file_name}}">CORPORATE BROCHURE</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
 			</div>
 		</div>
@@ -235,7 +312,7 @@
 		<div class="row pt-5">
 
 
-			<div class="col-lg-6 mt-4">
+			<div class="col-lg-6 col-sm-12 mt-4">
 				<div class="mostcat p-4">
 					<div class="row">
 						<div class="col-md-6">
@@ -254,7 +331,7 @@
 			</div>
 
 
-			<div class="col-lg-6 mt-4">
+			<div class="col-lg-6 col-sm-12 mt-4">
 				<div class="mostcat p-4">
 					<div class="row">
 						<div class="col-md-6">
@@ -283,32 +360,6 @@
 
 
 
-<section class="virtual mt-5">
-	<div class="container">
-		<div class="row align-items-center">
-			<div class="col-lg-6">
-				<div class="">
-					<strong>Virtual Reality <i class="bi bi-dash-lg"></i></strong><br>
-					<h3>Click for an immersive virtual experience of our instrument.</h3>
-					<p>Innovation & Adoption of new technology being the core of our thought process, we are delighted to take you through our products in key segments.</p>
-					<div class="mt-5">
-						<a href="">VIRTUAL PRODUCT TOUR</a>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-lg-6">
-				<center><video src="https://www.agappe.com/media/homepage/video/Agappe-vr-video-new.mp4" loop muted playsinline uk-video="autoplay: inview"></video></center>
-			</div>
-		</div>
-
-	</div>
-
-</section>
-
-
-
-
 <section class="career mt-5">
 	<div class="container">
 		<div class="row align-items-center">
@@ -320,7 +371,7 @@
 					<div class="mt-5">
 						<a href="">GO TO CAREERS</a>
 					</div>
-				</div>
+				</div><br>
 			</div>
 
 			<div class="col-lg-5">
@@ -420,7 +471,7 @@
 							<span>Find the support you need 24x7</span>
 						</div>
 					</div>
-				</div>
+				</div><br>
 			</div>
 
 
@@ -435,7 +486,7 @@
 							<span>Browse Products or Quick Order</span>
 						</div>
 					</div>
-				</div>
+				</div><br>
 			</div>
 
 
@@ -450,7 +501,7 @@
 							<span>Review Agappe's Latest Research</span>
 						</div>
 					</div>
-				</div>
+				</div><br>
 			</div>
 
 

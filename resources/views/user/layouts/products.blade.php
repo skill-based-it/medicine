@@ -25,7 +25,7 @@
 		<div class="row">
 
 
-			<div class="col-md-3">
+			<div class="col-lg-3 col-md-12 col-sm-12">
 				<div class="categorey-list">
 					<div class="categorey-list-wrap">
 						<div class="bg-white p-4">
@@ -53,7 +53,7 @@
 			</div>
 
 
-            <div class="col-md-9">
+            <div class="col-lg-9 col-md-12 col-sm-12">
                 <div class="row">
                     @if($product)
                     @foreach ($product as $v)
