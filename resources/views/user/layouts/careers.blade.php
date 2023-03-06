@@ -234,42 +234,28 @@
 
             <div class="uk-slider-container uk-light">
                 <ul class="uk-slider-items uk-child-width-1-1 uk-child-width-1-1@s uk-child-width-1-1@m">
+                    @if($agentReviews)
+                    @foreach ($agentReviews as $v)
                     <li>
                         <div class="row">
 
                         <div class="col-lg-4 col-md-12 col-12">
                             <div class="manager-image">
-                                <img src="{{ url("user") }}/image/optimum-manager.webp" alt="" class="img-fluid">
+                                <img src="{{ asset('/backend/agentImage') }}/{{$v->image}}" alt="" class="img-fluid">
                             </div>
                         </div>
 
                         <div class="col-lg-6 col-md-12 col-12">
                             <div class="manager-speech">
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s</p>
-                                <b>Mr Jailson Varghese - Asistant General Manger - Reagent Production</b>
+                                <p>{!!$v->description !!}</p>
+                                <b>{{$v->agent_name}} - {{$v->designation}} - {{$v->location}}</b>
                             </div>
                         </div>
 
                         </div>
                     </li>
-                    <li>
-                        <div class="row">
-
-                        <div class="col-lg-4 col-md-12 col-12">
-                            <div class="manager-image">
-                                <img src="{{ url("user") }}/image/optimum-manager.webp" alt="" class="img-fluid">
-                            </div>
-                        </div>
-
-                        <div class="col-lg-6 col-md-12 col-12">
-                            <div class="manager-speech">
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s</p>
-                                <b>Mr Jailson Varghese - Asistant General Manger - Reagent Production</b>
-                            </div>
-                        </div>
-
-                        </div>
-                    </li>
+                    @endforeach
+                    @endif
                 </ul>
             </div>
 
@@ -298,165 +284,7 @@
 
 
 
-{{-- <section class="productsection">
-	<div class="container">
 
-		<div class="row pb-4 pcathead">
-			<div class="col-lg-8">
-				<div>
-					<strong>What's New at Agappe?</strong>
-				</div>
-			</div>
-
-			<div class="col-lg-4">
-				<div class="float-end">
-					<span>View All Articles &nbsp;&nbsp;<i class="bi bi-plus-lg"></i></a>
-					</div>
-				</div>
-			</div>
-
-			<div class="uk-position-relative uk-visible-toggle" tabindex="-1" uk-slider>
-
-				<ul class="uk-slider-items uk-child-width-1-2 uk-child-width-1-4@m uk-grid">
-
-					<li class="uk-transition-toggle" tabindex="0">
-						<div class="whats-new-single">
-                            <a href="http://">
-                                <div class="box-image">
-                                    <img src="{{ url("user") }}/image/new-image1.webp" alt="" class="img-fluid">
-                                </div>
-                                <div class="public-name">
-                                    <span>Hr Sandesh</span>
-                                </div>
-                                <div class="box-title">
-                                    <b>The Man Who Bent Light</b>
-                                </div>
-                                <div class="publish-date">
-                                    February 20-23
-                                </div>
-                            </a>
-                        </div>
-					</li>
-					<li class="uk-transition-toggle" tabindex="0">
-						<div class="whats-new-single">
-                            <a href="http://">
-                                <div class="box-image">
-                                    <img src="{{ url("user") }}/image/new-image1.webp" alt="" class="img-fluid">
-                                </div>
-                                <div class="public-name">
-                                    <span>Hr Sandesh</span>
-                                </div>
-                                <div class="box-title">
-                                    <b>The Man Who Bent Light</b>
-                                </div>
-                                <div class="publish-date">
-                                    February 20-23
-                                </div>
-                            </a>
-                        </div>
-					</li>
-					<li class="uk-transition-toggle" tabindex="0">
-						<div class="whats-new-single">
-                            <a href="http://">
-                                <div class="box-image">
-                                    <img src="{{ url("user") }}/image/new-image1.webp" alt="" class="img-fluid">
-                                </div>
-                                <div class="public-name">
-                                    <span>Hr Sandesh</span>
-                                </div>
-                                <div class="box-title">
-                                    <b>The Man Who Bent Light</b>
-                                </div>
-                                <div class="publish-date">
-                                    February 20-23
-                                </div>
-                            </a>
-                        </div>
-					</li>
-					<li class="uk-transition-toggle" tabindex="0">
-						<div class="whats-new-single">
-                            <a href="http://">
-                                <div class="box-image">
-                                    <img src="{{ url("user") }}/image/new-image1.webp" alt="" class="img-fluid">
-                                </div>
-                                <div class="public-name">
-                                    <span>Hr Sandesh</span>
-                                </div>
-                                <div class="box-title">
-                                    <b>The Man Who Bent Light</b>
-                                </div>
-                                <div class="publish-date">
-                                    February 20-23
-                                </div>
-                            </a>
-                        </div>
-					</li>
-					<li class="uk-transition-toggle" tabindex="0">
-						<div class="whats-new-single">
-                            <a href="http://">
-                                <div class="box-image">
-                                    <img src="{{ url("user") }}/image/new-image1.webp" alt="" class="img-fluid">
-                                </div>
-                                <div class="public-name">
-                                    <span>Hr Sandesh</span>
-                                </div>
-                                <div class="box-title">
-                                    <b>The Man Who Bent Light</b>
-                                </div>
-                                <div class="publish-date">
-                                    February 20-23
-                                </div>
-                            </a>
-                        </div>
-					</li>
-					<li class="uk-transition-toggle" tabindex="0">
-						<div class="whats-new-single">
-                            <a href="http://">
-                                <div class="box-image">
-                                    <img src="{{ url("user") }}/image/new-image1.webp" alt="" class="img-fluid">
-                                </div>
-                                <div class="public-name">
-                                    <span>Hr Sandesh</span>
-                                </div>
-                                <div class="box-title">
-                                    <b>The Man Who Bent Light</b>
-                                </div>
-                                <div class="publish-date">
-                                    February 20-23
-                                </div>
-                            </a>
-                        </div>
-					</li>
-					<li class="uk-transition-toggle" tabindex="0">
-						<div class="whats-new-single">
-                            <a href="http://">
-                                <div class="box-image">
-                                    <img src="{{ url("user") }}/image/new-image1.webp" alt="" class="img-fluid">
-                                </div>
-                                <div class="public-name">
-                                    <span>Hr Sandesh</span>
-                                </div>
-                                <div class="box-title">
-                                    <b>The Man Who Bent Light</b>
-                                </div>
-                                <div class="publish-date">
-                                    February 20-23
-                                </div>
-                            </a>
-                        </div>
-					</li>
-
-				</ul>
-
-				<a class="uk-position-center-left uk-position-small" href="#" uk-slidenav-previous uk-slider-item="previous"></a>
-				<a class="uk-position-center-right uk-position-small" href="#" uk-slidenav-next uk-slider-item="next"></a>
-
-			</div>
-
-
-
-		</div>
-	</section> --}}
 
 
 

@@ -9,7 +9,7 @@
         <li><span>{{$data->product_code}}</span></li>
     </ul>
 
-    <div class="row align-items-center mt-5 pt-5">
+    <div class="row align-items-center mt-5">
         <div class="col-md-5">
 
 
@@ -149,14 +149,14 @@
     <div class="container">
 
         <div class="row pb-4 pcathead">
-            <div class="col-lg-8">
+            <div class="col-lg-8 text-center text-sm-start">
                 <div>
                     <strong>Related Products</strong>
                 </div>
             </div>
 
             <div class="col-lg-4">
-                <div class="float-end">
+                <div class="text-center text-sm-end">
                     <span>View All Products &nbsp;&nbsp;<i class="bi bi-plus-lg"></i></a>
                     </div>
                 </div>

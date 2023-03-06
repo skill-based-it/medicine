@@ -23,7 +23,7 @@
 		<div class="row align-items-center">
             @if($aboutUsImages)
             @foreach ($aboutUsImages as $v)
-			<div class="col-md-3">
+			<div class="col-md-3 col-3">
 				<img src="{{ asset('/backend/aboutUsImage') }}/{{$v->images}}" class="img-fluid">
 			</div>
             @endforeach
@@ -48,7 +48,7 @@
 					{!! $data->company_history !!}
 				</p>
 
-				<div class="row">
+				<div class="row text-center text-sm-start">
 					<div class="col-md-3 mt-4">
 						<h1>{{$data->country_support}} +</h1>
 						<label>COUNTRIES</label>
@@ -163,7 +163,7 @@
 
 
 
-<div class="container slidersection">
+<div class="container slidersection pt-5 d-none d-sm-block">
 	<div class="uk-position-relative uk-visible-toggle" tabindex="-1" uk-slideshow="ratio: 10:3; animation: scale">
 
 		<ul class="uk-slideshow-items">
@@ -236,6 +236,105 @@
 
 
 
+
+
+
+
+
+
+
+
+<div class="container slidersection pt-5 d-block d-sm-none">
+	<div class="uk-position-relative uk-visible-toggle" tabindex="-1" uk-slideshow="ratio: 2:3; animation: scale">
+
+		<ul class="uk-slideshow-items">
+
+
+			<li>
+				<div class="row">
+					<div class="col-md-6">
+						<div class="">
+							<span><i class="bi bi-dash-lg"></i>&nbsp;&nbsp;Our History</span>
+							<div class="mt-4 mb-4"><strong>Your Best Partner In Diagonistic</strong></div><br>
+							<a href="" class="button">Explore Products</a>
+						</div>
+					</div>
+
+					<div class="col-md-6">
+						<img src="{{ url("user") }}/image/banner 1_1608114112.webp">
+					</div>
+				</div>
+			</li>
+
+
+
+			<li>
+				<div class="row">
+					<div class="col-md-6">
+						<div class="">
+							<span><i class="bi bi-dash-lg"></i>&nbsp;&nbsp;Our History</span>
+							<div class="mt-4 mb-4"><strong>Performance Ahead Of Expectation</strong></div><br>
+							<a href="" class="button">Explore Products</a>
+						</div>
+					</div>
+
+					<div class="col-md-6">
+						<img src="{{ url("user") }}/image/banner_1608717989.webp">
+					</div>
+				</div>
+			</li>
+
+
+
+			<li>
+				<div class="row">
+					<div class="col-md-6">
+						<div class="">
+							<span><i class="bi bi-dash-lg"></i>&nbsp;&nbsp;Our History</span>
+							<div class="mt-4 mb-4"><strong>Your Best Partner In Diagonistic</strong></div><br>
+							<a href="" class="button">Explore Products</a>
+						</div>
+					</div>
+
+					<div class="col-md-6">
+						<img src="{{ url("user") }}/image/banner 2 (1)_1608114172 (2).webp">
+					</div>
+				</div>
+			</li>
+
+
+
+
+		</ul>
+
+		<ul class="uk-slideshow-nav uk-dotnav uk-margin"></ul>
+
+
+
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <section class="membersection">
 	<div class="container">
 		<div class="row">
@@ -283,7 +382,7 @@
 
 				<div class="mt-5">
 					<a href="">View Profile</a>
-				</div>
+				</div><br>
 
 
 			</div>
@@ -320,7 +419,7 @@
 
 				<div class="mt-5">
 					<a href="">View Profile</a>
-				</div>
+				</div><br>
 
 
 			</div>

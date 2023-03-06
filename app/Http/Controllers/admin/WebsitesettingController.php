@@ -57,7 +57,7 @@ class WebsitesettingController extends Controller
 			$image_one_name= hexdec(uniqid()).'.'.$logimage->getClientOriginalExtension();
 			Image::make($logimage)->save('backend/logo/'.$image_one_name,50);
 			$data['logo']='backend/logo/'.$image_one_name;
-			
+
 		}
 
 		if ($iconimage) {
@@ -181,7 +181,35 @@ class WebsitesettingController extends Controller
 
 	}
 
+    public function uploadcorporatebrouchere(Request $request)
+    {
+        $files = $request->file('files');
 
+        if($files)
+        {
+            $pathImage = DB::table('corporate_broucheres')->where('id',1)->first();
+
+            $path = base_path().'/backend/corporateBrouchere/'.$pathImage->file_name;
+
+            if(file_exists($path))
+            {
+                unlink($path);
+            }
+
+
+            $imageName = rand().'.'.$files->getClientOriginalExtension();
+
+            $files->move(base_path().'/backend/corporateBrouchere/',$imageName);
+
+            DB::table('corporate_broucheres')->where('id',1)->update(['file_name'=>$imageName]);
+        }
+
+        $notification=array(
+			'messege'=>'Corporate Broucher Upload Successfull',
+			'alert-type'=>'success'
+		);
+		return redirect()->back()->with($notification);
+    }
 
 
 

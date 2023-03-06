@@ -39,7 +39,7 @@ $settings = DB::table('settings')->first();
                 <div class="mt-4">
                     Write to us<br>
                     <a href="">Official : {{$settings->email}}</a><br>
-                </div>
+                </div>  <br>
 
             </div>
 

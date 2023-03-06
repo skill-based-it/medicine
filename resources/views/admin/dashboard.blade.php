@@ -43,7 +43,35 @@
                 </div>
             </div>
 
-      
+            <div class="col-12">
+                <h4 class="card-title">Upload Corporate Brouchere</h4><br>
+
+                <div class="card">
+                    <div class="card-body">
+                        <div class="basic-form border p-5">
+                            <form method="post" class="row" action="{{ url("uploadcorporatebrouchere") }}" enctype="multipart/form-data">
+
+                                @csrf
+
+                                <div class="col-md-12 row">
+
+                                    <div class="form-group col-md-6">
+                                        <label>File:</label>
+                                        <input type="file" name="files" class="form-control" id="imgInp" required>
+                                    </div>
+
+                                </div>
+
+                                <div class="form-group col-md-12">
+                                    <button type="submit" class="btn btn-dark">Save Now</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
 
 
 

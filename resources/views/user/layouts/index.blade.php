@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Optimum</title>
+  <title>{{ $websettings->website_name }}</title>
   <link rel="icon" href="{{asset($websettings->favicon)}}">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="{{ asset("user") }}/css/style.css">
@@ -25,11 +25,14 @@
     <div uk-sticky class="boxshadowheader ">
       <div class="container">
        <div class="row align-items-center">
-        <div class="col-xl-3 ">
-          <a href="{{ url('/') }}"><img src="{{ asset("$websettings->logo") }}" class="img-responsive" ></a>
+        <div class="col-lg-3   col-md-3 col-7">
+          <a href="{{ url('/') }}"><img src="{{ asset("$websettings->logo") }}" class="img-fluid" ></a>
         </div>
-        <div class="col-xl-9">
-          <div class="float-end">
+        <div class="col-lg-9 col-md-9 col-5">
+          <div class="float-end d-block d-md-none">
+            <strong uk-toggle="target: #offcanvas-slide"><i class="bi bi-list" style="font-size: 30px;"></i></strong>
+          </div>
+          <div class="float-end d-none d-md-block">
             <li><a href="{{ url("about") }}">ABOUT US</a></li>
             <li><a href="{{ url("products") }}">PRODUCTS</a></li>
             <li><a href="{{ url("support") }}">SUPPORT</a></li>
@@ -58,22 +61,20 @@
 
 
 <div id="offcanvas-slide" uk-offcanvas="overlay: true">
-  <div class="uk-offcanvas-bar">
+  <div class="uk-offcanvas-bar" style="font-size: 14px!important;">
 
     <button class="uk-offcanvas-close" type="button" uk-close></button>
+    <br>
 
-    <li><a href="">সর্বশেষ</a></li><hr>
-    <li><a href="category.php">বিশেষ সংবাদ</a></li><hr>
-    <li><a href="category.php">বাংলাদেশ</a></li><hr>
-    <li><a href="category.php">রাজনীতি</a></li><hr>
-    <li><a href="category.php">করোনাভাইরাস</a></li><hr>
-    <li><a href="category.php">বিশ্ব</a></li><hr>
-    <li><a href="category.php">বাণিজ্য</a></li><hr>
-    <li><a href="category.php">মতামত</a></li><hr>
-    <li><a href="category.php">খেলা</a></li><hr>
-    <li><a href="category.php">বিনোদন</a></li><hr>
-    <li><a href="category.php">চাকরি</a></li><hr>
-    <li><a href="category.php">জীবনযাপন</a></li><hr>
+    <li><a href="{{ url("about") }}">ABOUT US</a></li><hr>
+    <li><a href="{{ url("products") }}">PRODUCTS</a></li><hr>
+    <li><a href="{{ url("support") }}">SUPPORT</a></li><hr>
+    <li><a href="{{ url("careers") }}">CAREERS</a></li><hr>
+    {{-- <li><a href="{{ url("techoptimum") }}">TECH OPTIMUM</a></li> --}}
+    <!--<li><a href="#">VIRTUAL DEMO</a></li>-->
+    <li><a href="{{ url("contact") }}">CONTACT US</a></li><hr>
+    <!--<li><a href="" class="iconmenu"><i class="bi bi-globe2"></i>&nbsp;&nbsp;EN</a></li>-->
+    <!--<li><a href="" class="iconmenu"><i class="bi bi-search"></i></a></li>-->
 
   </div>
 </div>
@@ -103,7 +104,7 @@
   <div class="container">
     <div class="row align-items-center">
       <div class="col-xl-3">
-        <img src="{{ asset("$websettings->logo") }}" class="form-control">
+        <img src="{{ asset("$websettings->logo") }}" class="form-control"><br>
       </div>
 
       <div class="col-xl-4">
@@ -112,7 +113,7 @@
           <span>
             Get promotions,inspiration and the latest news <br>about brands and products directly in your inbox.
           </span>
-        </div>
+        </div><br>
       </div>
 
       <div class="col-xl-3">
@@ -174,7 +175,7 @@
         <strong>{{$websettings->website_name}}</strong><br><br>
         <div class="contactdetails">
           <br>
-        {!! $websettings->address !!}<br><br>
+          {!! $websettings->address !!}<br><br>
 
           Tel:{{$websettings->phone}}<br>
           Email: {{$websettings->email}}<br>
@@ -199,9 +200,9 @@
 
 
 
-    <div class="row developertext align-items-center">
+    <div class="row developertext align-items-center text-center text-sm-start">
       <div class="col-xl-8 mt-4">
-        <strong>All rights reserved |</strong>
+        <strong>All rights reserved&nbsp;&nbsp;&nbsp;|</strong>
         @if ($pages)
         @foreach ($pages as $v)
         <li><a href="{{url('pages')}}/{{$v->slug}}/{{$v->id}}">{{$v->name}}</a></li>
@@ -210,8 +211,8 @@
       </div>
 
       <div class="col-xl-4 mt-4">
-        <div class="float-end">
-          <strong>Designed by <a href="" class="developer">S B I T</a></strong>
+        <div class="text-sm-end text-center">
+          <strong>Developed by <a href="" class="developer">S B I T</a></strong>
         </div>
       </div>
     </div>
@@ -241,41 +242,41 @@
 
 <script type="text/javascript">
 
-$('.single-item').slick();
+  $('.single-item').slick();
 
-var angle = 0;
-setInterval(function() {
+  var angle = 0;
+  setInterval(function() {
     console.log(angle);
     $("#carer_polygyon")
-        .css('-webkit-transform', 'rotate('+angle+'deg)')
-        .css('-moz-transform', 'rotate('+angle+'deg)')
-        .css('-ms-transform', 'rotate('+angle+'deg)');
+    .css('-webkit-transform', 'rotate('+angle+'deg)')
+    .css('-moz-transform', 'rotate('+angle+'deg)')
+    .css('-ms-transform', 'rotate('+angle+'deg)');
     angle++;
-}, 100);
+  }, 100);
 
 </script>
 
 
 @if(Session::has('success'))
-	<script>
-		swal('', '{{ session('success') }}', 'success');
-	</script>
+<script>
+  swal('', '{{ session('success') }}', 'success');
+</script>
 
-	@endif
+@endif
 
-	@if(Session::has('error'))
-	<script>
-		swal('', '{{ session('error') }}', 'error');
-	</script>
+@if(Session::has('error'))
+<script>
+  swal('', '{{ session('error') }}', 'error');
+</script>
 
-	@endif
+@endif
 
-	@if(Session::has('info'))
-	<script>
-		swal('', '{{ session('info') }}', 'info');
-	</script>
+@if(Session::has('info'))
+<script>
+  swal('', '{{ session('info') }}', 'info');
+</script>
 
-	@endif
+@endif
 
 </body>
 </html>

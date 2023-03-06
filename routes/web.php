@@ -84,6 +84,9 @@ Route::get('addservices', [WebsitesettingController::class, 'addservices']);
 Route::post('updateservices/{id}', [WebsitesettingController::class, 'updateservices']);
 
 
+Route::post('uploadcorporatebrouchere', [WebsitesettingController::class, 'uploadcorporatebrouchere']);
+
+
 
 
 
@@ -241,5 +244,14 @@ Route::get('/managepromisses',[CarrerController::class,'managepromisses']);
 Route::get('/editPromisses/{id}',[CarrerController::class,'editPromisses']);
 Route::post('/updatepromisses/{id}',[CarrerController::class,'updatepromisses']);
 Route::get('/deletepromisses/{id}',[CarrerController::class,'deletepromisses']);
+
+//agent review
+
+Route::get('/agent_review',[CarrerController::class,'agent_review']);
+Route::post('/insertagent_review',[CarrerController::class,'insertagent_review']);
+Route::get('/manageagent_review',[CarrerController::class,'manageagent_review']);
+Route::get('/editagentReviews/{id}',[CarrerController::class,'editagentReviews']);
+Route::post('/updateagent_review/{id}',[CarrerController::class,'updateagent_review']);
+Route::get('/deleteagent_review/{id}',[CarrerController::class,'deleteagent_review']);
 
 
